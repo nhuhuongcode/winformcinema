@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp3
 {
-	partial class Form1
+	partial class QL_Phim
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -37,14 +37,14 @@
 			this.quảnLýLịchChiếuPhimToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.quảnLýPhimToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.quảnLýCụmRạpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.button4 = new System.Windows.Forms.Button();
-			this.button3 = new System.Windows.Forms.Button();
-			this.button2 = new System.Windows.Forms.Button();
-			this.button1 = new System.Windows.Forms.Button();
-			this.button5 = new System.Windows.Forms.Button();
-			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.bt_luu = new System.Windows.Forms.Button();
+			this.bt_xoa = new System.Windows.Forms.Button();
+			this.bt_them = new System.Windows.Forms.Button();
+			this.bt_sua = new System.Windows.Forms.Button();
+			this.bt_tim = new System.Windows.Forms.Button();
+			this.grw_cr1 = new System.Windows.Forms.DataGridView();
 			this.menuStrip1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.grw_cr1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -132,111 +132,112 @@
 			this.quảnLýCụmRạpToolStripMenuItem.Size = new System.Drawing.Size(343, 30);
 			this.quảnLýCụmRạpToolStripMenuItem.Text = "Quản lý cụm rạp";
 			// 
-			// button4
+			// bt_luu
 			// 
-			this.button4.BackColor = System.Drawing.SystemColors.HotTrack;
-			this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-			this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button4.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-			this.button4.Location = new System.Drawing.Point(875, 135);
-			this.button4.Margin = new System.Windows.Forms.Padding(4);
-			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(125, 35);
-			this.button4.TabIndex = 116;
-			this.button4.Text = "Lưu";
-			this.button4.UseVisualStyleBackColor = false;
+			this.bt_luu.BackColor = System.Drawing.SystemColors.HotTrack;
+			this.bt_luu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+			this.bt_luu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.bt_luu.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.bt_luu.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+			this.bt_luu.Location = new System.Drawing.Point(875, 135);
+			this.bt_luu.Margin = new System.Windows.Forms.Padding(4);
+			this.bt_luu.Name = "bt_luu";
+			this.bt_luu.Size = new System.Drawing.Size(125, 35);
+			this.bt_luu.TabIndex = 116;
+			this.bt_luu.Text = "Lưu";
+			this.bt_luu.UseVisualStyleBackColor = false;
 			// 
-			// button3
+			// bt_xoa
 			// 
-			this.button3.BackColor = System.Drawing.SystemColors.HotTrack;
-			this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-			this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button3.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-			this.button3.Location = new System.Drawing.Point(875, 96);
-			this.button3.Margin = new System.Windows.Forms.Padding(4);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(125, 35);
-			this.button3.TabIndex = 115;
-			this.button3.Text = "Xóa";
-			this.button3.UseVisualStyleBackColor = false;
+			this.bt_xoa.BackColor = System.Drawing.SystemColors.HotTrack;
+			this.bt_xoa.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+			this.bt_xoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.bt_xoa.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.bt_xoa.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+			this.bt_xoa.Location = new System.Drawing.Point(875, 96);
+			this.bt_xoa.Margin = new System.Windows.Forms.Padding(4);
+			this.bt_xoa.Name = "bt_xoa";
+			this.bt_xoa.Size = new System.Drawing.Size(125, 35);
+			this.bt_xoa.TabIndex = 115;
+			this.bt_xoa.Text = "Xóa";
+			this.bt_xoa.UseVisualStyleBackColor = false;
 			// 
-			// button2
+			// bt_them
 			// 
-			this.button2.BackColor = System.Drawing.SystemColors.HotTrack;
-			this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-			this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button2.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-			this.button2.Location = new System.Drawing.Point(549, 96);
-			this.button2.Margin = new System.Windows.Forms.Padding(4);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(125, 35);
-			this.button2.TabIndex = 114;
-			this.button2.Text = "+Thêm";
-			this.button2.UseVisualStyleBackColor = false;
+			this.bt_them.BackColor = System.Drawing.SystemColors.HotTrack;
+			this.bt_them.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+			this.bt_them.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.bt_them.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.bt_them.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+			this.bt_them.Location = new System.Drawing.Point(549, 96);
+			this.bt_them.Margin = new System.Windows.Forms.Padding(4);
+			this.bt_them.Name = "bt_them";
+			this.bt_them.Size = new System.Drawing.Size(125, 35);
+			this.bt_them.TabIndex = 114;
+			this.bt_them.Text = "+Thêm";
+			this.bt_them.UseVisualStyleBackColor = false;
+			this.bt_them.Click += new System.EventHandler(this.bt_them_Click_1);
 			// 
-			// button1
+			// bt_sua
 			// 
-			this.button1.BackColor = System.Drawing.SystemColors.HotTrack;
-			this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button1.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-			this.button1.Location = new System.Drawing.Point(714, 96);
-			this.button1.Margin = new System.Windows.Forms.Padding(4);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(125, 35);
-			this.button1.TabIndex = 117;
-			this.button1.Text = "Sửa";
-			this.button1.UseVisualStyleBackColor = false;
+			this.bt_sua.BackColor = System.Drawing.SystemColors.HotTrack;
+			this.bt_sua.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+			this.bt_sua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.bt_sua.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.bt_sua.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+			this.bt_sua.Location = new System.Drawing.Point(714, 96);
+			this.bt_sua.Margin = new System.Windows.Forms.Padding(4);
+			this.bt_sua.Name = "bt_sua";
+			this.bt_sua.Size = new System.Drawing.Size(125, 35);
+			this.bt_sua.TabIndex = 117;
+			this.bt_sua.Text = "Sửa";
+			this.bt_sua.UseVisualStyleBackColor = false;
 			// 
-			// button5
+			// bt_tim
 			// 
-			this.button5.BackColor = System.Drawing.SystemColors.HotTrack;
-			this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-			this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button5.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-			this.button5.Location = new System.Drawing.Point(13, 135);
-			this.button5.Margin = new System.Windows.Forms.Padding(4);
-			this.button5.Name = "button5";
-			this.button5.Size = new System.Drawing.Size(125, 35);
-			this.button5.TabIndex = 118;
-			this.button5.Text = "Tìm";
-			this.button5.UseVisualStyleBackColor = false;
+			this.bt_tim.BackColor = System.Drawing.SystemColors.HotTrack;
+			this.bt_tim.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+			this.bt_tim.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.bt_tim.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.bt_tim.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+			this.bt_tim.Location = new System.Drawing.Point(13, 135);
+			this.bt_tim.Margin = new System.Windows.Forms.Padding(4);
+			this.bt_tim.Name = "bt_tim";
+			this.bt_tim.Size = new System.Drawing.Size(125, 35);
+			this.bt_tim.TabIndex = 118;
+			this.bt_tim.Text = "Tìm";
+			this.bt_tim.UseVisualStyleBackColor = false;
 			// 
-			// dataGridView1
+			// grw_cr1
 			// 
-			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView1.Location = new System.Drawing.Point(13, 177);
-			this.dataGridView1.Name = "dataGridView1";
-			this.dataGridView1.RowHeadersWidth = 51;
-			this.dataGridView1.RowTemplate.Height = 24;
-			this.dataGridView1.Size = new System.Drawing.Size(987, 372);
-			this.dataGridView1.TabIndex = 119;
+			this.grw_cr1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.grw_cr1.Location = new System.Drawing.Point(13, 177);
+			this.grw_cr1.Name = "grw_cr1";
+			this.grw_cr1.RowHeadersWidth = 51;
+			this.grw_cr1.RowTemplate.Height = 24;
+			this.grw_cr1.Size = new System.Drawing.Size(987, 372);
+			this.grw_cr1.TabIndex = 119;
 			// 
-			// Form1
+			// QL_Phim
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1016, 562);
-			this.Controls.Add(this.dataGridView1);
-			this.Controls.Add(this.button5);
-			this.Controls.Add(this.button1);
-			this.Controls.Add(this.button4);
-			this.Controls.Add(this.button3);
-			this.Controls.Add(this.button2);
+			this.Controls.Add(this.grw_cr1);
+			this.Controls.Add(this.bt_tim);
+			this.Controls.Add(this.bt_sua);
+			this.Controls.Add(this.bt_luu);
+			this.Controls.Add(this.bt_xoa);
+			this.Controls.Add(this.bt_them);
 			this.Controls.Add(this.menuStrip1);
 			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.label1);
-			this.Name = "Form1";
-			this.Text = "Form1";
+			this.Name = "QL_Phim";
+			this.Text = "QLPhim";
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.grw_cr1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -253,11 +254,11 @@
 		private System.Windows.Forms.ToolStripMenuItem quảnLýLịchChiếuPhimToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem quảnLýPhimToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem quảnLýCụmRạpToolStripMenuItem;
-		private System.Windows.Forms.Button button4;
-		private System.Windows.Forms.Button button3;
-		private System.Windows.Forms.Button button2;
-		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.Button button5;
-		private System.Windows.Forms.DataGridView dataGridView1;
+		private System.Windows.Forms.Button bt_luu;
+		private System.Windows.Forms.Button bt_xoa;
+		private System.Windows.Forms.Button bt_them;
+		private System.Windows.Forms.Button bt_sua;
+		private System.Windows.Forms.Button bt_tim;
+		private System.Windows.Forms.DataGridView grw_cr1;
 	}
 }
