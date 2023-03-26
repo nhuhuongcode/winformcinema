@@ -1,0 +1,16 @@
+C:\Users\HP\Downloads\Projec_QLDA\Projec_QLDA\Projec_QLDA\bin\Debug\Projec_QLDA.exe.config
+C:\Users\HP\Downloads\Projec_QLDA\Projec_QLDA\Projec_QLDA\bin\Debug\Projec_QLDA.exe
+C:\Users\HP\Downloads\Projec_QLDA\Projec_QLDA\Projec_QLDA\bin\Debug\Projec_QLDA.pdb
+C:\Users\HP\Downloads\Projec_QLDA\Projec_QLDA\Projec_QLDA\obj\Debug\Project_QLDA.csproj.AssemblyReference.cache
+C:\Users\HP\Downloads\Projec_QLDA\Projec_QLDA\Projec_QLDA\obj\Debug\Project_QLDA.csproj.SuggestedBindingRedirects.cache
+C:\Users\HP\Downloads\Projec_QLDA\Projec_QLDA\Projec_QLDA\obj\Debug\Projec_QLDA.Chi_tiết_lịch_chiếu_phim.resources
+C:\Users\HP\Downloads\Projec_QLDA\Projec_QLDA\Projec_QLDA\obj\Debug\Projec_QLDA.Form1.resources
+C:\Users\HP\Downloads\Projec_QLDA\Projec_QLDA\Projec_QLDA\obj\Debug\Projec_QLDA.Dashboard__QL_.resources
+C:\Users\HP\Downloads\Projec_QLDA\Projec_QLDA\Projec_QLDA\obj\Debug\WindowsFormsApp2.QL_CumRap.resources
+C:\Users\HP\Downloads\Projec_QLDA\Projec_QLDA\Projec_QLDA\obj\Debug\WindowsFormsApp3.Form1.resources
+C:\Users\HP\Downloads\Projec_QLDA\Projec_QLDA\Projec_QLDA\obj\Debug\WindowsFormsApp1.Form1.resources
+C:\Users\HP\Downloads\Projec_QLDA\Projec_QLDA\Projec_QLDA\obj\Debug\Projec_QLDA.Properties.Resources.resources
+C:\Users\HP\Downloads\Projec_QLDA\Projec_QLDA\Projec_QLDA\obj\Debug\Project_QLDA.csproj.GenerateResource.cache
+C:\Users\HP\Downloads\Projec_QLDA\Projec_QLDA\Projec_QLDA\obj\Debug\Project_QLDA.csproj.CoreCompileInputs.cache
+C:\Users\HP\Downloads\Projec_QLDA\Projec_QLDA\Projec_QLDA\obj\Debug\Projec_QLDA.exe
+C:\Users\HP\Downloads\Projec_QLDA\Projec_QLDA\Projec_QLDA\obj\Debug\Projec_QLDA.pdb
