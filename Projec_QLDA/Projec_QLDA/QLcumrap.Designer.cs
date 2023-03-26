@@ -52,7 +52,7 @@
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(267, 34);
+			this.label1.Location = new System.Drawing.Point(366, 33);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(273, 38);
 			this.label1.TabIndex = 2;
@@ -66,7 +66,7 @@
 			this.bt_luu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.bt_luu.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.bt_luu.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-			this.bt_luu.Location = new System.Drawing.Point(661, 135);
+			this.bt_luu.Location = new System.Drawing.Point(875, 135);
 			this.bt_luu.Margin = new System.Windows.Forms.Padding(4);
 			this.bt_luu.Name = "bt_luu";
 			this.bt_luu.Size = new System.Drawing.Size(125, 35);
@@ -82,7 +82,7 @@
 			this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.button3.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.button3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-			this.button3.Location = new System.Drawing.Point(648, 95);
+			this.button3.Location = new System.Drawing.Point(862, 95);
 			this.button3.Margin = new System.Windows.Forms.Padding(4);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(0, 0);
@@ -97,12 +97,12 @@
 			this.bt_chinhsua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.bt_chinhsua.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.bt_chinhsua.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-			this.bt_chinhsua.Location = new System.Drawing.Point(500, 96);
+			this.bt_chinhsua.Location = new System.Drawing.Point(714, 96);
 			this.bt_chinhsua.Margin = new System.Windows.Forms.Padding(4);
 			this.bt_chinhsua.Name = "bt_chinhsua";
 			this.bt_chinhsua.Size = new System.Drawing.Size(125, 35);
 			this.bt_chinhsua.TabIndex = 121;
-			this.bt_chinhsua.Text = "+ Chỉnh sửa";
+			this.bt_chinhsua.Text = "Sửa";
 			this.bt_chinhsua.UseVisualStyleBackColor = false;
 			this.bt_chinhsua.Click += new System.EventHandler(this.button2_Click);
 			// 
@@ -114,7 +114,7 @@
 			this.textBox1.Location = new System.Drawing.Point(13, 96);
 			this.textBox1.Margin = new System.Windows.Forms.Padding(4);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(262, 31);
+			this.textBox1.Size = new System.Drawing.Size(477, 31);
 			this.textBox1.TabIndex = 124;
 			this.textBox1.Text = "Tìm kiếm theo mã cụm rạp...";
 			// 
@@ -127,7 +127,7 @@
             this.chứcNăngToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(800, 33);
+			this.menuStrip1.Size = new System.Drawing.Size(1016, 33);
 			this.menuStrip1.TabIndex = 125;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -183,11 +183,11 @@
 			// grw_cr
 			// 
 			this.grw_cr.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.grw_cr.Location = new System.Drawing.Point(12, 176);
+			this.grw_cr.Location = new System.Drawing.Point(13, 177);
 			this.grw_cr.Name = "grw_cr";
 			this.grw_cr.RowHeadersWidth = 51;
 			this.grw_cr.RowTemplate.Height = 24;
-			this.grw_cr.Size = new System.Drawing.Size(774, 295);
+			this.grw_cr.Size = new System.Drawing.Size(987, 372);
 			this.grw_cr.TabIndex = 126;
 			// 
 			// bt_them
@@ -197,7 +197,7 @@
 			this.bt_them.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.bt_them.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.bt_them.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-			this.bt_them.Location = new System.Drawing.Point(335, 96);
+			this.bt_them.Location = new System.Drawing.Point(549, 96);
 			this.bt_them.Margin = new System.Windows.Forms.Padding(4);
 			this.bt_them.Name = "bt_them";
 			this.bt_them.Size = new System.Drawing.Size(125, 35);
@@ -213,7 +213,7 @@
 			this.bt_xoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.bt_xoa.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.bt_xoa.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-			this.bt_xoa.Location = new System.Drawing.Point(661, 96);
+			this.bt_xoa.Location = new System.Drawing.Point(875, 96);
 			this.bt_xoa.Margin = new System.Windows.Forms.Padding(4);
 			this.bt_xoa.Name = "bt_xoa";
 			this.bt_xoa.Size = new System.Drawing.Size(125, 35);
@@ -242,7 +242,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 490);
+			this.ClientSize = new System.Drawing.Size(1016, 562);
 			this.Controls.Add(this.bt_tim);
 			this.Controls.Add(this.bt_xoa);
 			this.Controls.Add(this.bt_them);
