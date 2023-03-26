@@ -35,6 +35,10 @@ namespace WindowsFormsApp2
 			grw_cr.DataSource = ds;
 			grw_cr.DataMember = "CumRap";
 			grw_cr.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+			grw_cr.Columns[2].Width = 420;
+			grw_cr.Columns[1].Width = 130;
+			grw_cr.Columns[0].Width = 80;
+
 
 
 		}

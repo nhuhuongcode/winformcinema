@@ -26,12 +26,17 @@ namespace WindowsFormsApp3
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			grw_cr1.AllowUserToDeleteRows = false;
-			grw_cr1.ReadOnly = true;
+			grw_phim.AllowUserToDeleteRows = false;
+			grw_phim.ReadOnly = true;
 			laydulieu();
-			grw_cr1.DataSource = ds;
-			grw_cr1.DataMember = "Phim";
-			grw_cr1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+			grw_phim.DataSource = ds;
+			grw_phim.DataMember = "Phim";
+			grw_phim.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+			grw_phim.Columns[1].Width = 260;
+			grw_phim.Columns[0].Width = 60;
+			grw_phim.Columns[2].Width = 110;
+
+
 
 		}
 
@@ -60,7 +65,7 @@ namespace WindowsFormsApp3
 		{
 			if (i)
 			{
-				grw_cr1.ReadOnly = false;
+				grw_phim.ReadOnly = false;
 				bt_sua.Enabled = false;
 				bt_sua.BackColor = SystemColors.ControlLight;
 				bt_them.Enabled = false;
@@ -70,7 +75,7 @@ namespace WindowsFormsApp3
 			}
 			else
 			{
-				grw_cr1.ReadOnly = true;
+				grw_phim.ReadOnly = true;
 				bt_sua.Enabled = true;
 				bt_sua.BackColor = SystemColors.HotTrack;
 				bt_them.Enabled = true;
@@ -80,7 +85,86 @@ namespace WindowsFormsApp3
 			}
 
 		}
-		private void button2_Click(object sender, EventArgs e)
+		
+
+		
+
+
+		private void bt_them_Click_1(object sender, EventArgs e)
+		{
+
+			enable(true);
+			// Chuyển đến hàng cuối cùng.
+			grw_phim.FirstDisplayedScrollingRowIndex = grw_phim.Rows.Count - 1;
+			// Chuyển đến cột đầu tiên.
+			grw_phim.CurrentCell = grw_phim.Rows[grw_phim.Rows.Count - 1].Cells[0];
+			// Bắt đầu chỉnh sửa ô.
+			grw_phim.BeginEdit(true);
+
+			//thiết lập insert
+			SqlCommand icmd = new SqlCommand(
+				"insert into Phim values (@maphim , @tenphim, @tentheloai, @cola3d, @colongtieng, @cola3d, @thoiluong)", cn);
+			SqlParameter imaphim = new SqlParameter(
+				"@maphim", SqlDbType.VarChar, 5, "MaPhim");
+			SqlParameter itenphim = new SqlParameter(
+				"@tenphim", SqlDbType.NVarChar, 50, "TenPhim");
+			SqlParameter idiachi = new SqlParameter(
+				"@tentheloai", SqlDbType.NVarChar, 50, "TenTheLoai");
+			SqlParameter icola3d = new SqlParameter(
+				"@cola3d", SqlDbType.Bit, 0, "CoLa3D");
+			SqlParameter icolongtieng = new SqlParameter(
+				"@colongtieng", SqlDbType.Bit, 0, "CoLongTieng");
+			SqlParameter ithoiluong = new SqlParameter(
+				"@thoiluong", SqlDbType.Int, 200, "ThoiLuong");
+			icmd.Parameters.Add(itenphim);
+			icmd.Parameters.Add(imaphim);
+			icmd.Parameters.Add(idiachi);
+			icmd.Parameters.Add(icola3d);
+			icmd.Parameters.Add(icolongtieng);
+			icmd.Parameters.Add(ithoiluong);
+			sda.UpdateCommand = icmd;
+		}
+
+		private void bt_tim_Click_1(object sender, EventArgs e)
+		{
+
+			cn.Open();
+			SqlCommand fcmd = new SqlCommand(
+				"select * from Phim where maphim = @maphim", cn);
+			SqlParameter fmacum = new SqlParameter(
+				"@maphim", SqlDbType.VarChar, 5);
+			fmacum.Value = textBox1.Text.ToString().Trim();
+			fcmd.Parameters.Add(fmacum);
+			sda.SelectCommand = fcmd;
+			ds.Tables["Phim"].Clear();
+			sda.Fill(ds, "Phim");
+			cn.Close();
+			grw_phim.DataSource = ds;
+			grw_phim.DataMember = "Phim";
+		}
+
+		private void bt_xoa_Click_1(object sender, EventArgs e)
+		{
+			enable(true);
+			grw_phim.ReadOnly = true;
+			grw_phim.AllowUserToDeleteRows = true;
+			SqlCommand dcmd = new SqlCommand(
+				"delete from Phim where maphim = @maphim", cn);
+			SqlParameter dmacum = new SqlParameter(
+				"@maphim", SqlDbType.VarChar, 5, "MaPhim");
+			dmacum.SourceVersion = DataRowVersion.Original;
+			dcmd.Parameters.Add(dmacum);
+			sda.DeleteCommand = dcmd;
+		}
+
+		private void bt_luu_Click_1(object sender, EventArgs e)
+		{
+			sda.Update(ds, "Phim");
+			enable(false);
+			grw_phim.AllowUserToDeleteRows = true;
+		}
+
+		private void bt_sua_Click(object sender, EventArgs e)
 		{
 			enable(true);
 
@@ -95,11 +179,11 @@ namespace WindowsFormsApp3
 			SqlParameter umaphim = new SqlParameter(
 				"@maphim", SqlDbType.VarChar, 5, "MaPhim");
 			SqlParameter ucola3d = new SqlParameter(
-				"@cola3d", SqlDbType.Bit, 0,"CoLa3D");
+				"@cola3d", SqlDbType.Bit, 0, "CoLa3D");
 			SqlParameter ucolongtieng = new SqlParameter(
 				"@colongtieng", SqlDbType.Bit, 0, "CoLongTieng");
 			SqlParameter uthoiluong = new SqlParameter(
-				"@thoiluong", SqlDbType.Int, 200 , "ThoiLuong");
+				"@thoiluong", SqlDbType.Int, 200, "ThoiLuong");
 			ucmd.Parameters.Add(utenphim);
 			ucmd.Parameters.Add(umaphim);
 			ucmd.Parameters.Add(udiachi);
@@ -107,115 +191,6 @@ namespace WindowsFormsApp3
 			ucmd.Parameters.Add(ucolongtieng);
 			ucmd.Parameters.Add(uthoiluong);
 			sda.UpdateCommand = ucmd;
-		}
-
-		private void bt_luu_Click(object sender, EventArgs e)
-		{
-			sda.Update(ds, "Phim");
-			enable(false);
-			grw_cr1.AllowUserToDeleteRows = true;
-		}
-
-		private void bt_them_Click(object sender, EventArgs e)
-		{
-			enable(true);
-			// Chuyển đến hàng cuối cùng.
-			grw_cr1.FirstDisplayedScrollingRowIndex = grw_cr1.Rows.Count - 1;
-			// Chuyển đến cột đầu tiên.
-			grw_cr1.CurrentCell = grw_cr1.Rows[grw_cr1.Rows.Count - 1].Cells[0];
-			// Bắt đầu chỉnh sửa ô.
-			grw_cr1.BeginEdit(true);
-
-			//thiết lập insert
-			SqlCommand icmd = new SqlCommand(
-				"insert into Phim values (@maphim , @tenphim, @tentheloai, @cola3d, @colongtieng, @cola3d, @thoiluong)", cn);
-			SqlParameter imaphim = new SqlParameter(
-				"@maphim", SqlDbType.VarChar, 5, "MaPhim");
-			SqlParameter itenphim = new SqlParameter(
-				"@tenphim", SqlDbType.NVarChar, 50, "TenPhim");
-			SqlParameter idiachi = new SqlParameter(
-				"@tentheloai", SqlDbType.NVarChar, 50, "TenTheLoai");
-			SqlParameter icola3d = new SqlParameter(
-				"@cola3d", SqlDbType.Bit, 0, "CoLa3D");
-			SqlParameter icolongtieng = new SqlParameter(
-				"@colongtieng", SqlDbType.Bit, 0, "CoLongTieng");
-			SqlParameter ithoiluong = new SqlParameter(
-				"@thoiluong", SqlDbType.Int, 200, "ThoiLuong");
-			icmd.Parameters.Add(itenphim);
-			icmd.Parameters.Add(imaphim);
-			icmd.Parameters.Add(idiachi);
-			icmd.Parameters.Add(icola3d);
-			icmd.Parameters.Add(icolongtieng);
-			icmd.Parameters.Add(ithoiluong);
-			sda.UpdateCommand = icmd;
-
-		}
-
-		private void bt_xoa_Click(object sender, EventArgs e)
-		{
-			enable(true);
-			grw_cr1.ReadOnly = true;
-			grw_cr1.AllowUserToDeleteRows = true;
-			SqlCommand dcmd = new SqlCommand(
-				"delete from Phim where maphim = @maphim", cn);
-			SqlParameter dmacum = new SqlParameter(
-				"@maphim", SqlDbType.VarChar, 5, "MaPhim");
-			dmacum.SourceVersion = DataRowVersion.Original;
-			dcmd.Parameters.Add(dmacum);
-			sda.DeleteCommand = dcmd;
-		}
-
-		private void bt_tim_Click(object sender, EventArgs e)
-		{
-			cn.Open();
-			SqlCommand fcmd = new SqlCommand(
-				"select * from Phim where maphim = @maphim", cn);
-			SqlParameter fmacum = new SqlParameter(
-				"@maphim", SqlDbType.VarChar, 5);
-			fmacum.Value = textBox1.Text.ToString().Trim();
-			fcmd.Parameters.Add(fmacum);
-			sda.SelectCommand = fcmd;
-			ds.Tables["Phim"].Clear();
-			sda.Fill(ds, "Phim");
-			cn.Close();
-			grw_cr1.DataSource = ds;
-			grw_cr1.DataMember = "Phim";
-
-		}
-
-		private void bt_them_Click_1(object sender, EventArgs e)
-		{
-
-			enable(true);
-			// Chuyển đến hàng cuối cùng.
-			grw_cr1.FirstDisplayedScrollingRowIndex = grw_cr1.Rows.Count - 1;
-			// Chuyển đến cột đầu tiên.
-			grw_cr1.CurrentCell = grw_cr1.Rows[grw_cr1.Rows.Count - 1].Cells[0];
-			// Bắt đầu chỉnh sửa ô.
-			grw_cr1.BeginEdit(true);
-
-			//thiết lập insert
-			SqlCommand icmd = new SqlCommand(
-				"insert into Phim values (@maphim , @tenphim, @tentheloai, @cola3d, @colongtieng, @cola3d, @thoiluong)", cn);
-			SqlParameter imaphim = new SqlParameter(
-				"@maphim", SqlDbType.VarChar, 5, "MaPhim");
-			SqlParameter itenphim = new SqlParameter(
-				"@tenphim", SqlDbType.NVarChar, 50, "TenPhim");
-			SqlParameter idiachi = new SqlParameter(
-				"@tentheloai", SqlDbType.NVarChar, 50, "TenTheLoai");
-			SqlParameter icola3d = new SqlParameter(
-				"@cola3d", SqlDbType.Bit, 0, "CoLa3D");
-			SqlParameter icolongtieng = new SqlParameter(
-				"@colongtieng", SqlDbType.Bit, 0, "CoLongTieng");
-			SqlParameter ithoiluong = new SqlParameter(
-				"@thoiluong", SqlDbType.Int, 200, "ThoiLuong");
-			icmd.Parameters.Add(itenphim);
-			icmd.Parameters.Add(imaphim);
-			icmd.Parameters.Add(idiachi);
-			icmd.Parameters.Add(icola3d);
-			icmd.Parameters.Add(icolongtieng);
-			icmd.Parameters.Add(ithoiluong);
-			sda.UpdateCommand = icmd;
 		}
 	}
 }

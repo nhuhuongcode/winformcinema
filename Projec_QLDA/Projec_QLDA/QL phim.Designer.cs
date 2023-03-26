@@ -42,9 +42,9 @@
 			this.bt_them = new System.Windows.Forms.Button();
 			this.bt_sua = new System.Windows.Forms.Button();
 			this.bt_tim = new System.Windows.Forms.Button();
-			this.grw_cr1 = new System.Windows.Forms.DataGridView();
+			this.grw_phim = new System.Windows.Forms.DataGridView();
 			this.menuStrip1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.grw_cr1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.grw_phim)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -146,6 +146,7 @@
 			this.bt_luu.TabIndex = 116;
 			this.bt_luu.Text = "Lưu";
 			this.bt_luu.UseVisualStyleBackColor = false;
+			this.bt_luu.Click += new System.EventHandler(this.bt_luu_Click_1);
 			// 
 			// bt_xoa
 			// 
@@ -161,6 +162,7 @@
 			this.bt_xoa.TabIndex = 115;
 			this.bt_xoa.Text = "Xóa";
 			this.bt_xoa.UseVisualStyleBackColor = false;
+			this.bt_xoa.Click += new System.EventHandler(this.bt_xoa_Click_1);
 			// 
 			// bt_them
 			// 
@@ -192,6 +194,7 @@
 			this.bt_sua.TabIndex = 117;
 			this.bt_sua.Text = "Sửa";
 			this.bt_sua.UseVisualStyleBackColor = false;
+			this.bt_sua.Click += new System.EventHandler(this.bt_sua_Click);
 			// 
 			// bt_tim
 			// 
@@ -207,23 +210,24 @@
 			this.bt_tim.TabIndex = 118;
 			this.bt_tim.Text = "Tìm";
 			this.bt_tim.UseVisualStyleBackColor = false;
+			this.bt_tim.Click += new System.EventHandler(this.bt_tim_Click_1);
 			// 
-			// grw_cr1
+			// grw_phim
 			// 
-			this.grw_cr1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.grw_cr1.Location = new System.Drawing.Point(13, 177);
-			this.grw_cr1.Name = "grw_cr1";
-			this.grw_cr1.RowHeadersWidth = 51;
-			this.grw_cr1.RowTemplate.Height = 24;
-			this.grw_cr1.Size = new System.Drawing.Size(987, 372);
-			this.grw_cr1.TabIndex = 119;
+			this.grw_phim.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.grw_phim.Location = new System.Drawing.Point(13, 177);
+			this.grw_phim.Name = "grw_phim";
+			this.grw_phim.RowHeadersWidth = 51;
+			this.grw_phim.RowTemplate.Height = 24;
+			this.grw_phim.Size = new System.Drawing.Size(987, 372);
+			this.grw_phim.TabIndex = 119;
 			// 
 			// QL_Phim
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1016, 562);
-			this.Controls.Add(this.grw_cr1);
+			this.Controls.Add(this.grw_phim);
 			this.Controls.Add(this.bt_tim);
 			this.Controls.Add(this.bt_sua);
 			this.Controls.Add(this.bt_luu);
@@ -237,7 +241,7 @@
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.grw_cr1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.grw_phim)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -259,6 +263,6 @@
 		private System.Windows.Forms.Button bt_them;
 		private System.Windows.Forms.Button bt_sua;
 		private System.Windows.Forms.Button bt_tim;
-		private System.Windows.Forms.DataGridView grw_cr1;
+		private System.Windows.Forms.DataGridView grw_phim;
 	}
 }
