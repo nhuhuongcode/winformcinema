@@ -69,6 +69,7 @@
 			this.textBox1.Size = new System.Drawing.Size(477, 31);
 			this.textBox1.TabIndex = 112;
 			this.textBox1.Text = "Tìm kiếm theo mã phim";
+			this.textBox1.Click += new System.EventHandler(this.textBox1_Click);
 			// 
 			// menuStrip1
 			// 
@@ -264,5 +265,7 @@
 		private System.Windows.Forms.Button bt_sua;
 		private System.Windows.Forms.Button bt_tim;
 		private System.Windows.Forms.DataGridView grw_phim;
-	}
+
+		
+		}
 }

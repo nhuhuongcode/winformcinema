@@ -141,13 +141,12 @@ namespace WindowsFormsApp3
 			cn.Close();
 			grw_phim.DataSource = ds;
 			grw_phim.DataMember = "Phim";
-
 			if (string.IsNullOrEmpty(textBox1.Text))
 			{
 				// Truy vấn tất cả các sản phẩm trong table và hiển thị chúng trong DataGridView.
 				laydulieu();
 				grw_phim.DataSource = ds;
-				grw_phim.DataMember = "CumRap";
+				grw_phim.DataMember = "Phim";
 			}
 		}
 
@@ -199,6 +198,15 @@ namespace WindowsFormsApp3
 			ucmd.Parameters.Add(ucolongtieng);
 			ucmd.Parameters.Add(uthoiluong);
 			sda.UpdateCommand = ucmd;
+		}
+
+		private void textBox1_Click(object sender, EventArgs e)
+		{
+			if (textBox1.Text == "Tìm kiếm theo mã phim")
+			{
+				textBox1.Text = "";
+				textBox1.ForeColor = Color.Black;
+			}
 		}
 	}
 }
