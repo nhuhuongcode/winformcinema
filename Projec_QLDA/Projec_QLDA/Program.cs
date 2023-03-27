@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.AccessControl;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Projec_QLDA;
+using WindowsFormsApp2;
 
 namespace Projec_QLDA
 {
@@ -18,7 +18,7 @@ namespace Projec_QLDA
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new ChitietLichChieu());
+			Application.Run(new QL_CumRap());
 
 		}
 	}

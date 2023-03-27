@@ -14,7 +14,7 @@ namespace WindowsFormsApp2
 {
 	public partial class QL_CumRap : Form
 	{
-        SqlConnection cn = new SqlConnection(@"Data Source=DESKTOP-DDKM1BA\HAO;Initial Catalog=RAP5;Integrated Security=True");
+        SqlConnection cn = new SqlConnection("Data Source=DESKTOP-6B95ADJ\\HUONG;Initial Catalog=RAP5;User ID=sa;Password=nguyennhuhuong");
 
         public SqlDataAdapter sda = new SqlDataAdapter();
 		public DataSet ds = new DataSet();
@@ -46,7 +46,7 @@ namespace WindowsFormsApp2
 		{
 			try
 			{
-				SqlConnection cn = new SqlConnection(@"Data Source=DESKTOP-DDKM1BA\HAO;Initial Catalog=RAP5;Integrated Security=True");
+				SqlConnection cn = new SqlConnection("Data Source=DESKTOP-6B95ADJ\\HUONG;Initial Catalog=RAP5;User ID=sa;Password=nguyennhuhuong");
 				cn.Open();
 				SqlCommand cmd = new SqlCommand("select * from CumRap", cn);
 				sda.SelectCommand = cmd;
