@@ -29,3 +29,4 @@ C:\Users\honha\winformcinema\Projec_QLDA\Projec_QLDA\obj\Debug\Project_QLDA.cspr
 C:\Users\honha\winformcinema\Projec_QLDA\Projec_QLDA\obj\Debug\Projec_QLDA.exe
 C:\Users\honha\winformcinema\Projec_QLDA\Projec_QLDA\obj\Debug\Projec_QLDA.pdb
 C:\Users\honha\winformcinema\Projec_QLDA\Projec_QLDA\obj\Debug\WindowsFormsApp3.QL_Phim.resources
+C:\Users\honha\winformcinema\Projec_QLDA\Projec_QLDA\obj\Debug\Projec_QLDA.ChitietLichChieu.resources

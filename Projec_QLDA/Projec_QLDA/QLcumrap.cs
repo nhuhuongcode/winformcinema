@@ -14,7 +14,7 @@ namespace WindowsFormsApp2
 {
 	public partial class QL_CumRap : Form
 	{
-        SqlConnection cn = new SqlConnection("Data Source=DESKTOP-6B95ADJ\\HUONG;Initial Catalog=RAP5;User ID=sa;Password=nguyennhuhuong");
+        SqlConnection cn = new SqlConnection(@"Data Source=DESKTOP-DDKM1BA\HAO;Initial Catalog=RAP5;Integrated Security=True");
 
         public SqlDataAdapter sda = new SqlDataAdapter();
 		public DataSet ds = new DataSet();
@@ -46,7 +46,7 @@ namespace WindowsFormsApp2
 		{
 			try
 			{
-				SqlConnection cn = new SqlConnection("Data Source=DESKTOP-6B95ADJ\\HUONG;Initial Catalog=RAP5;User ID=sa;Password=nguyennhuhuong");
+				SqlConnection cn = new SqlConnection(@"Data Source=DESKTOP-DDKM1BA\HAO;Initial Catalog=RAP5;Integrated Security=True");
 				cn.Open();
 				SqlCommand cmd = new SqlCommand("select * from CumRap", cn);
 				sda.SelectCommand = cmd;
@@ -107,7 +107,7 @@ namespace WindowsFormsApp2
         {
 			sda.Update(ds, "CumRap");
 			enable(false);
-            grw_cr.AllowUserToDeleteRows = true;
+            grw_cr.AllowUserToDeleteRows = false;
         }
 
         private void bt_them_Click(object sender, EventArgs e)

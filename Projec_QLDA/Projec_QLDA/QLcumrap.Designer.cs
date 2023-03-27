@@ -118,7 +118,7 @@
             this.textBox1.TabIndex = 124;
             this.textBox1.Text = "Tìm kiếm theo mã cụm rạp";
             this.textBox1.Click += new System.EventHandler(this.textBox1_Click);
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
+            //this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
             // 
             // menuStrip1
             // 

@@ -141,6 +141,14 @@ namespace WindowsFormsApp3
 			cn.Close();
 			grw_phim.DataSource = ds;
 			grw_phim.DataMember = "Phim";
+
+			if (string.IsNullOrEmpty(textBox1.Text))
+			{
+				// Truy vấn tất cả các sản phẩm trong table và hiển thị chúng trong DataGridView.
+				laydulieu();
+				grw_phim.DataSource = ds;
+				grw_phim.DataMember = "CumRap";
+			}
 		}
 
 		private void bt_xoa_Click_1(object sender, EventArgs e)
@@ -161,7 +169,7 @@ namespace WindowsFormsApp3
 		{
 			sda.Update(ds, "Phim");
 			enable(false);
-			grw_phim.AllowUserToDeleteRows = true;
+			grw_phim.AllowUserToDeleteRows = false;
 		}
 
 		private void bt_sua_Click(object sender, EventArgs e)

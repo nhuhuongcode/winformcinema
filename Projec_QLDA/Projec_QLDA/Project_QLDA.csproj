@@ -65,6 +65,12 @@
     <Compile Include="Dashboard %28QL%29.Designer.cs">
       <DependentUpon>Dashboard %28QL%29.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChitietLichChieu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChitietLichChieu.Designer.cs">
+      <DependentUpon>ChitietLichChieu.cs</DependentUpon>
+    </Compile>
     <Compile Include="function.cs" />
     <Compile Include="QLrap.cs">
       <SubType>Form</SubType>
@@ -86,6 +92,9 @@
     <Compile Include="QL phim.Designer.cs">
       <DependentUpon>QL phim.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ChitietLichChieu.resx">
+      <DependentUpon>ChitietLichChieu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Detail phim.resx">
       <DependentUpon>Detail phim.cs</DependentUpon>
     </EmbeddedResource>
