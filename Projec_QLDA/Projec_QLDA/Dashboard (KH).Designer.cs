@@ -147,7 +147,7 @@
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(318, 29);
 			this.textBox1.TabIndex = 3;
-			this.textBox1.Text = "Tìm kiếm theo mã phim...";
+			this.textBox1.Text = "    Tìm kiếm theo mã phim...";
 			// 
 			// label4
 			// 
@@ -166,7 +166,7 @@
 			// 
 			this.label5.AutoSize = true;
 			this.label5.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label5.Location = new System.Drawing.Point(52, 133);
+			this.label5.Location = new System.Drawing.Point(51, 133);
 			this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(87, 25);
@@ -177,7 +177,7 @@
 			// 
 			this.label6.AutoSize = true;
 			this.label6.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label6.Location = new System.Drawing.Point(952, 133);
+			this.label6.Location = new System.Drawing.Point(948, 133);
 			this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(77, 25);
@@ -210,7 +210,7 @@
 			// 
 			this.label9.AutoSize = true;
 			this.label9.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label9.Location = new System.Drawing.Point(150, 134);
+			this.label9.Location = new System.Drawing.Point(259, 134);
 			this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(116, 25);
@@ -351,7 +351,7 @@
 			// 
 			this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.textBox7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox7.Location = new System.Drawing.Point(151, 348);
+			this.textBox7.Location = new System.Drawing.Point(260, 348);
 			this.textBox7.Margin = new System.Windows.Forms.Padding(4);
 			this.textBox7.Name = "textBox7";
 			this.textBox7.Size = new System.Drawing.Size(113, 27);
@@ -363,7 +363,7 @@
 			// 
 			this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.textBox8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox8.Location = new System.Drawing.Point(151, 293);
+			this.textBox8.Location = new System.Drawing.Point(260, 293);
 			this.textBox8.Margin = new System.Windows.Forms.Padding(4);
 			this.textBox8.Name = "textBox8";
 			this.textBox8.Size = new System.Drawing.Size(113, 27);
@@ -375,7 +375,7 @@
 			// 
 			this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.textBox9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox9.Location = new System.Drawing.Point(151, 404);
+			this.textBox9.Location = new System.Drawing.Point(260, 404);
 			this.textBox9.Margin = new System.Windows.Forms.Padding(4);
 			this.textBox9.Name = "textBox9";
 			this.textBox9.Size = new System.Drawing.Size(113, 27);
@@ -387,7 +387,7 @@
 			// 
 			this.textBox10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.textBox10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox10.Location = new System.Drawing.Point(151, 462);
+			this.textBox10.Location = new System.Drawing.Point(260, 462);
 			this.textBox10.Margin = new System.Windows.Forms.Padding(4);
 			this.textBox10.Name = "textBox10";
 			this.textBox10.Size = new System.Drawing.Size(113, 27);
@@ -399,7 +399,7 @@
 			// 
 			this.textBox11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.textBox11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox11.Location = new System.Drawing.Point(151, 182);
+			this.textBox11.Location = new System.Drawing.Point(260, 182);
 			this.textBox11.Margin = new System.Windows.Forms.Padding(4);
 			this.textBox11.Name = "textBox11";
 			this.textBox11.Size = new System.Drawing.Size(113, 27);
@@ -733,7 +733,7 @@
 			// 
 			this.textBox16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.textBox16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox16.Location = new System.Drawing.Point(151, 239);
+			this.textBox16.Location = new System.Drawing.Point(260, 239);
 			this.textBox16.Margin = new System.Windows.Forms.Padding(4);
 			this.textBox16.Name = "textBox16";
 			this.textBox16.Size = new System.Drawing.Size(113, 27);
@@ -746,7 +746,7 @@
 			this.textBox17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.textBox17.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.textBox17.ForeColor = System.Drawing.SystemColors.ControlDark;
-			this.textBox17.Location = new System.Drawing.Point(151, 517);
+			this.textBox17.Location = new System.Drawing.Point(260, 517);
 			this.textBox17.Margin = new System.Windows.Forms.Padding(4);
 			this.textBox17.Name = "textBox17";
 			this.textBox17.Size = new System.Drawing.Size(113, 27);
@@ -915,96 +915,104 @@
 			this.textBox18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.textBox18.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.textBox18.ForeColor = System.Drawing.SystemColors.ControlDark;
-			this.textBox18.Location = new System.Drawing.Point(279, 517);
+			this.textBox18.Location = new System.Drawing.Point(149, 517);
 			this.textBox18.Margin = new System.Windows.Forms.Padding(4);
 			this.textBox18.Name = "textBox18";
 			this.textBox18.Size = new System.Drawing.Size(89, 27);
 			this.textBox18.TabIndex = 96;
 			this.textBox18.Text = "thêm mới";
 			this.textBox18.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.textBox18.TextChanged += new System.EventHandler(this.textBox18_TextChanged);
 			// 
 			// textBox19
 			// 
 			this.textBox19.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.textBox19.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox19.Location = new System.Drawing.Point(279, 239);
+			this.textBox19.Location = new System.Drawing.Point(149, 239);
 			this.textBox19.Margin = new System.Windows.Forms.Padding(4);
 			this.textBox19.Name = "textBox19";
 			this.textBox19.Size = new System.Drawing.Size(89, 27);
 			this.textBox19.TabIndex = 95;
 			this.textBox19.Text = "tên phim";
 			this.textBox19.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.textBox19.TextChanged += new System.EventHandler(this.textBox19_TextChanged);
 			// 
 			// textBox20
 			// 
 			this.textBox20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.textBox20.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox20.Location = new System.Drawing.Point(279, 182);
+			this.textBox20.Location = new System.Drawing.Point(149, 182);
 			this.textBox20.Margin = new System.Windows.Forms.Padding(4);
 			this.textBox20.Name = "textBox20";
 			this.textBox20.Size = new System.Drawing.Size(89, 27);
 			this.textBox20.TabIndex = 94;
 			this.textBox20.Text = "tên phim";
 			this.textBox20.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.textBox20.TextChanged += new System.EventHandler(this.textBox20_TextChanged);
 			// 
 			// textBox21
 			// 
 			this.textBox21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.textBox21.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox21.Location = new System.Drawing.Point(279, 462);
+			this.textBox21.Location = new System.Drawing.Point(149, 462);
 			this.textBox21.Margin = new System.Windows.Forms.Padding(4);
 			this.textBox21.Name = "textBox21";
 			this.textBox21.Size = new System.Drawing.Size(89, 27);
 			this.textBox21.TabIndex = 93;
 			this.textBox21.Text = "tên phim";
 			this.textBox21.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.textBox21.TextChanged += new System.EventHandler(this.textBox21_TextChanged);
 			// 
 			// textBox27
 			// 
 			this.textBox27.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.textBox27.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox27.Location = new System.Drawing.Point(279, 348);
+			this.textBox27.Location = new System.Drawing.Point(149, 348);
 			this.textBox27.Margin = new System.Windows.Forms.Padding(4);
 			this.textBox27.Name = "textBox27";
 			this.textBox27.Size = new System.Drawing.Size(89, 27);
 			this.textBox27.TabIndex = 92;
 			this.textBox27.Text = "tên phim";
 			this.textBox27.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.textBox27.TextChanged += new System.EventHandler(this.textBox27_TextChanged);
 			// 
 			// textBox28
 			// 
 			this.textBox28.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.textBox28.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox28.Location = new System.Drawing.Point(279, 293);
+			this.textBox28.Location = new System.Drawing.Point(149, 293);
 			this.textBox28.Margin = new System.Windows.Forms.Padding(4);
 			this.textBox28.Name = "textBox28";
 			this.textBox28.Size = new System.Drawing.Size(89, 27);
 			this.textBox28.TabIndex = 91;
 			this.textBox28.Text = "tên phim";
 			this.textBox28.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.textBox28.TextChanged += new System.EventHandler(this.textBox28_TextChanged);
 			// 
 			// textBox29
 			// 
 			this.textBox29.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.textBox29.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox29.Location = new System.Drawing.Point(279, 404);
+			this.textBox29.Location = new System.Drawing.Point(149, 404);
 			this.textBox29.Margin = new System.Windows.Forms.Padding(4);
 			this.textBox29.Name = "textBox29";
 			this.textBox29.Size = new System.Drawing.Size(89, 27);
 			this.textBox29.TabIndex = 90;
 			this.textBox29.Text = "tên phim";
 			this.textBox29.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.textBox29.TextChanged += new System.EventHandler(this.textBox29_TextChanged);
 			// 
 			// label13
 			// 
 			this.label13.AutoSize = true;
 			this.label13.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label13.Location = new System.Drawing.Point(277, 134);
+			this.label13.Location = new System.Drawing.Point(148, 134);
 			this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(90, 25);
 			this.label13.TabIndex = 89;
 			this.label13.Text = "Tên phim";
+			this.label13.Click += new System.EventHandler(this.label13_Click);
 			// 
 			// Form1
 			// 
