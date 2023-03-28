@@ -103,13 +103,6 @@ namespace WindowsFormsApp2
 			sda.UpdateCommand = ucmd;
         }
 
-        private void bt_luu_Click(object sender, EventArgs e)
-        {
-			sda.Update(ds, "CumRap");
-			enable(false);
-            grw_cr.AllowUserToDeleteRows = false;
-        }
-
         private void bt_them_Click(object sender, EventArgs e)
         {
 			enable(true);
@@ -181,6 +174,28 @@ namespace WindowsFormsApp2
 			{
                 textBox1.Text = "";
                 textBox1.ForeColor = Color.Black;
+            }
+        }
+
+        private void bt_luu_Click(object sender, EventArgs e)
+        {
+			try
+			{
+				sda.Update(ds, "CumRap");
+				enable(false);
+				grw_cr.AllowUserToDeleteRows = false;
+			}
+            catch (SqlException ex)
+            {
+                if (ex.Number == 547)
+                {
+                    MessageBox.Show("Không thể xóa thông tin cụm rạp này!", "Error");
+                }
+                else if (ex.Number == 2627)
+                {
+                    MessageBox.Show("Mã cụm rạp đã tồn tại", "Error");
+                }
+
             }
         }
     }
