@@ -39,11 +39,11 @@ namespace Projec_QLDA
             this.quảToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quảnLýCụmRạpToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.nguyễnVănCáToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thôngTinTàiKhoảnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.đăngXuấtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.menuStrip8.SuspendLayout();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
@@ -132,27 +132,6 @@ namespace Projec_QLDA
             this.menuStrip2.TabIndex = 8;
             this.menuStrip2.Text = "menuStrip2";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.label1.Location = new System.Drawing.Point(84, 66);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(512, 47);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Hệ thống rạp chiếu phim CGV";
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel1.BackgroundImage = global::Projec_QLDA.Properties.Resources._6810ed53357d2e5cb82210c97de009b9;
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Location = new System.Drawing.Point(202, 131);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(245, 142);
-            this.panel1.TabIndex = 10;
-            // 
             // nguyễnVănCáToolStripMenuItem
             // 
             this.nguyễnVănCáToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -175,6 +154,27 @@ namespace Projec_QLDA
             this.đăngXuấtToolStripMenuItem.Name = "đăngXuấtToolStripMenuItem";
             this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.đăngXuấtToolStripMenuItem.Text = "Đăng xuất";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.label1.Location = new System.Drawing.Point(84, 66);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(494, 47);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Hệ thống rạp chiếu phim CGV";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.BackgroundImage = global::Projec_QLDA.Properties.Resources._6810ed53357d2e5cb82210c97de009b9;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Location = new System.Drawing.Point(199, 135);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(245, 142);
+            this.panel1.TabIndex = 10;
             // 
             // ManHinhChinh
             // 
