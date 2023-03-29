@@ -922,7 +922,7 @@
 			this.textBox18.TabIndex = 96;
 			this.textBox18.Text = "thêm mới";
 			this.textBox18.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.textBox18.TextChanged += new System.EventHandler(this.textBox18_TextChanged);
+			
 			// 
 			// textBox19
 			// 
@@ -935,7 +935,7 @@
 			this.textBox19.TabIndex = 95;
 			this.textBox19.Text = "tên phim";
 			this.textBox19.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.textBox19.TextChanged += new System.EventHandler(this.textBox19_TextChanged);
+			
 			// 
 			// textBox20
 			// 
@@ -948,7 +948,7 @@
 			this.textBox20.TabIndex = 94;
 			this.textBox20.Text = "tên phim";
 			this.textBox20.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.textBox20.TextChanged += new System.EventHandler(this.textBox20_TextChanged);
+		
 			// 
 			// textBox21
 			// 
@@ -961,7 +961,7 @@
 			this.textBox21.TabIndex = 93;
 			this.textBox21.Text = "tên phim";
 			this.textBox21.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.textBox21.TextChanged += new System.EventHandler(this.textBox21_TextChanged);
+			
 			// 
 			// textBox27
 			// 
@@ -974,7 +974,7 @@
 			this.textBox27.TabIndex = 92;
 			this.textBox27.Text = "tên phim";
 			this.textBox27.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.textBox27.TextChanged += new System.EventHandler(this.textBox27_TextChanged);
+	
 			// 
 			// textBox28
 			// 
@@ -987,7 +987,7 @@
 			this.textBox28.TabIndex = 91;
 			this.textBox28.Text = "tên phim";
 			this.textBox28.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.textBox28.TextChanged += new System.EventHandler(this.textBox28_TextChanged);
+		
 			// 
 			// textBox29
 			// 
@@ -1000,7 +1000,7 @@
 			this.textBox29.TabIndex = 90;
 			this.textBox29.Text = "tên phim";
 			this.textBox29.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.textBox29.TextChanged += new System.EventHandler(this.textBox29_TextChanged);
+
 			// 
 			// label13
 			// 
@@ -1012,7 +1012,7 @@
 			this.label13.Size = new System.Drawing.Size(90, 25);
 			this.label13.TabIndex = 89;
 			this.label13.Text = "Tên phim";
-			this.label13.Click += new System.EventHandler(this.label13_Click);
+	
 			// 
 			// Form1
 			// 
