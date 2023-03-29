@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
 
 namespace WindowsFormsApp3
 {
@@ -87,9 +89,6 @@ namespace WindowsFormsApp3
 		}
 		
 
-		
-
-
 		private void bt_them_Click_1(object sender, EventArgs e)
 		{
 
@@ -122,7 +121,7 @@ namespace WindowsFormsApp3
 			icmd.Parameters.Add(icola3d);
 			icmd.Parameters.Add(icolongtieng);
 			icmd.Parameters.Add(ithoiluong);
-			sda.UpdateCommand = icmd;
+			sda.InsertCommand = icmd;
 		}
 
 		private void bt_tim_Click_1(object sender, EventArgs e)
@@ -164,12 +163,7 @@ namespace WindowsFormsApp3
 			sda.DeleteCommand = dcmd;
 		}
 
-		private void bt_luu_Click_1(object sender, EventArgs e)
-		{
-			sda.Update(ds, "Phim");
-			enable(false);
-			grw_phim.AllowUserToDeleteRows = false;
-		}
+		
 
 		private void bt_sua_Click(object sender, EventArgs e)
 		{
@@ -207,6 +201,30 @@ namespace WindowsFormsApp3
 				textBox1.Text = "";
 				textBox1.ForeColor = Color.Black;
 			}
+		}
+
+		private void bt_luu_Click_1(object sender, EventArgs e)
+		{
+			try
+			{
+				sda.Update(ds, "Phim");
+				enable(false);
+				grw_phim.AllowUserToDeleteRows = false;
+			}
+			catch (SqlException ex)
+			{
+				if (ex.Number == 547)
+				{
+					MessageBox.Show("Không thể xóa thông tin phim này!", "Error");
+				}
+				else if (ex.Number == 2627)
+				{
+					MessageBox.Show("Mã phim đã tồn tại", "Error");
+				}
+
+			}
+
+
 		}
 	}
 }
