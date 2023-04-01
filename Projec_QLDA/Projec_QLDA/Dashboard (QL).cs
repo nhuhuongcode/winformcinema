@@ -13,7 +13,7 @@ namespace Projec_QLDA
 {
 	public partial class Dashboard__QL_ : Form
 	{
-		SqlConnection cn = new SqlConnection("Data Source=DESKTOP-T87PM31\SQLEXPRESS;Initial Catalog=RAP5;Integrated Security=True");
+		SqlConnection cn = new SqlConnection(@"Data Source=DESKTOP-DDKM1BA\HAO;Initial Catalog=RAP5;Integrated Security=True");
 
 		public SqlDataAdapter sda = new SqlDataAdapter();
 		public DataSet ds = new DataSet();
@@ -66,9 +66,10 @@ namespace Projec_QLDA
 			grw_cr.DataSource = ds;
 			grw_cr.DataMember = "LichChieu";
 			grw_cr.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-			grw_cr.Columns[2].Width = 230;
-			grw_cr.Columns[1].Width = 80;
+			grw_cr.Columns[2].Width = 60;
+			grw_cr.Columns[1].Width = 60;
 			grw_cr.Columns[0].Width = 80;
+			grw_cr.Columns[3].Width = 280;
 		}
 
 		private void label2_Click_1(object sender, EventArgs e)
@@ -79,9 +80,9 @@ namespace Projec_QLDA
 		{
 			try
 			{
-				SqlConnection cn = new SqlConnection("Data Source=DESKTOP-T87PM31\SQLEXPRESS;Initial Catalog=RAP5;Integrated Security=True");
+				SqlConnection cn = new SqlConnection(@"Data Source=DESKTOP-DDKM1BA\HAO;Initial Catalog=RAP5;Integrated Security=True");
 				cn.Open();
-				SqlCommand cmd = new SqlCommand("select LichChieu.MaLichChieu, LichChieu.MaPhim, Phim.TenPhim, LichChieu.MaRap, LichChieu.NgayChieu from (LichChieu INNER JOIN Phim ON LichChieu.MaPhim = Phim.MaPhim)", cn);
+				SqlCommand cmd = new SqlCommand("select LichChieu.MaLichChieu, SuatChieu.MaSuat, LichChieu.MaPhim, Phim.TenPhim, LichChieu.MaRap, LichChieu.NgayChieu from((LichChieu INNER JOIN Phim ON LichChieu.MaPhim = Phim.MaPhim)inner join ChiTietLichChieu on ChiTietLichChieu.MaLichChieu = LichChieu.MaLichChieu)inner join SuatChieu on SuatChieu.MaSuat = ChiTietLichChieu.MaSuat order by LichChieu.NgayChieu", cn);
 				sda.SelectCommand = cmd;
 				sda.Fill(ds, "LichChieu");
 				cn.Close();
@@ -142,9 +143,24 @@ namespace Projec_QLDA
 
 		private void bt_luu_Click(object sender, EventArgs e)
 		{
-			sda.Update(ds, "LichChieu");
-			enable(false);
-			grw_cr.AllowUserToDeleteRows = false;
+			try
+			{
+				sda.Update(ds, "LichChieu");
+				enable(false);
+				grw_cr.AllowUserToDeleteRows = false;
+			}
+			catch (SqlException ex)
+			{
+				if (ex.Number == 547)
+				{
+					MessageBox.Show("Không thể xóa thông tin lịch chiếu này!", "Error");
+				}
+				else if (ex.Number == 2627)
+				{
+					MessageBox.Show("Mã lịch chiếu đã tồn tại", "Error");
+				}
+
+			}
 		}
 
 		private void bt_them_Click(object sender, EventArgs e)
@@ -160,6 +176,14 @@ namespace Projec_QLDA
 			//thiết lập insert
 			SqlCommand icmd = new SqlCommand(
 				"insert into LichChieu values (@maphim,@marap,@malichchieu,@ngaychieu)", cn);
+			SqlCommand i1cmd = new SqlCommand(
+				"insert into SuatChieu values (@masuat)", cn);
+			SqlCommand i2cmd = new SqlCommand(
+				"insert into Phim values (@tenphim)", cn);
+			SqlParameter itenphim = new SqlParameter(
+				"@tenphim", SqlDbType.NVarChar, 50, "TenPhim");
+			SqlParameter imasuat = new SqlParameter(
+				"@masuat", SqlDbType.VarChar, 3, "MaSuat");
 			SqlParameter imaphim = new SqlParameter(
 				"@maphim", SqlDbType.NVarChar, 10, "MaPhim");
 			SqlParameter imarap = new SqlParameter(
@@ -172,6 +196,8 @@ namespace Projec_QLDA
 			icmd.Parameters.Add(imarap);
 			icmd.Parameters.Add(imalichchieu);
 			icmd.Parameters.Add(ingaychieu);
+			i1cmd.Parameters.Add(imasuat);
+			i2cmd.Parameters.Add(itenphim);
 			sda.InsertCommand = icmd;
 		}
 
@@ -216,7 +242,7 @@ namespace Projec_QLDA
 
 		private void textBox1_Click(object sender, EventArgs e)
 		{
-			if (textBox1.Text == "Tìm kiếm theo mã cụm rạp")
+			if (textBox1.Text == "Tìm kiếm theo mã lịch chiếu")
 			{
 				textBox1.Text = "";
 				textBox1.ForeColor = Color.Black;
