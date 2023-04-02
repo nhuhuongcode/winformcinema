@@ -27,12 +27,12 @@ namespace Projec_QLDA
 			grw_lc.AllowUserToDeleteRows = false;
 			grw_lc.ReadOnly = true;
 			laydulieu();
-			grw_cr.DataSource = ds;
-			grw_cr.DataMember = "LichChieu";
-			grw_cr.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-			grw_cr.Columns[2].Width = 230;
-			grw_cr.Columns[1].Width = 80;
-			grw_cr.Columns[0].Width = 80;
+			grw_lc.DataSource = ds;
+			grw_lc.DataMember = "LichChieu";
+			grw_lc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+			grw_lc.Columns[2].Width = 230;
+			grw_lc.Columns[1].Width = 80;
+			grw_lc.Columns[0].Width = 80;
 		}
 
 		private void label2_Click_1(object sender, EventArgs e)
@@ -43,9 +43,10 @@ namespace Projec_QLDA
 		{
 			try
 			{
-				SqlConnection cn = new SqlConnection("Data Source=DESKTOP-T87PM31\SQLEXPRESS;Initial Catalog=RAP5;Integrated Security=True");
+				SqlConnection cn = new SqlConnection("Data Source=DESKTOP-6B95ADJ\\HUONG;Initial Catalog=RAP5;User ID=sa;Password=nguyennhuhuong");
 				cn.Open();
-				SqlCommand cmd = new SqlCommand("select LichChieu.MaLichChieu, LichChieu.MaPhim, Phim.TenPhim, LichChieu.MaRap, LichChieu.NgayChieu from (LichChieu INNER JOIN Phim ON LichChieu.MaPhim = Phim.MaPhim)", cn);
+				SqlCommand cmd = new SqlCommand("select LichChieu.MaLichChieu, LichChieu.MaPhim, Phim.TenPhim, LichChieu.MaRap, LichChieu.NgayChieu, ChiTietLichChieu.MaSuat from (LichChieu INNER JOIN Phim ON LichChieu.MaPhim = Phim.MaPhim) " +
+					"inner join ChiTietLichChieu on ChiTietLichChieu.MaLichChieu = LichChieu.MaLichChieu", cn);
 				sda.SelectCommand = cmd;
 				sda.Fill(ds, "LichChieu");
 				cn.Close();
@@ -108,11 +109,9 @@ namespace Projec_QLDA
 		{
 			sda.Update(ds, "LichChieu");
 			enable(false);
-			grw_cr.AllowUserToDeleteRows = false;
+			grw_lc.AllowUserToDeleteRows = false;
 		}
 
-			}
-		}
 
 		private void bt_them_Click(object sender, EventArgs e)
 		{
@@ -200,18 +199,17 @@ namespace Projec_QLDA
 			}
 		}
 
-        private void grw_cr_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void grw_lc_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-			ChitietLichChieu form = new ChitietLichChieu();
-			form.malc = grw_lc.CurrentRow.Cells[0].Value.ToString(); 
-			form.mar = grw_lc.CurrentRow.Cells[3].Value.ToString();
-			form.ngaychieu = grw_lc.CurrentRow.Cells[4].Value.ToString();
-			form.tenphim = grw_lc.CurrentRow.Cells[2].Value.ToString();
-			form.map = grw_lc.CurrentRow.Cells[1].Value.ToString();
-			form.masuat = grw_lc.CurrentRow.Cells[5].Value.ToString();
-			this.Hide();
-			form.ShowDialog();
-
+            ChitietLichChieu form = new ChitietLichChieu();
+            form.malc = grw_lc.CurrentRow.Cells[0].Value.ToString();
+            form.mar = grw_lc.CurrentRow.Cells[3].Value.ToString();
+            form.ngaychieu = grw_lc.CurrentRow.Cells[4].Value.ToString();
+            form.tenphim = grw_lc.CurrentRow.Cells[2].Value.ToString();
+            form.map = grw_lc.CurrentRow.Cells[1].Value.ToString();
+            form.masuat = grw_lc.CurrentRow.Cells[5].Value.ToString();
+            this.Hide();
+            form.ShowDialog();
         }
     }
 }
