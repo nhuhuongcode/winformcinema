@@ -13,7 +13,7 @@ namespace Projec_QLDA
 {
 	public partial class Dashboard__QL_ : Form
 	{
-		SqlConnection cn = new SqlConnection("Data Source=DESKTOP-T87PM31\SQLEXPRESS;Initial Catalog=RAP5;Integrated Security=True");
+		SqlConnection cn = new SqlConnection("Data Source=DESKTOP-6B95ADJ\\HUONG;Initial Catalog=RAP5;User ID=sa;Password=nguyennhuhuong");
 
 		public SqlDataAdapter sda = new SqlDataAdapter();
 		public DataSet ds = new DataSet();
@@ -22,53 +22,17 @@ namespace Projec_QLDA
 			InitializeComponent();
 		}
 
-		//private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-		//{
-
-		//}
-
-		//private void textBox18_TextChanged(object sender, EventArgs e)
-		//{
-
-		//}
-
-		//private void label2_Click(object sender, EventArgs e)
-		//{
-
-		//}
-
-		//private void button4_Click(object sender, EventArgs e)
-		//{
-
-		//}
-
-		//private void textBox12_TextChanged(object sender, EventArgs e)
-		//{
-
-		//}
-
-		//private void label10_Click(object sender, EventArgs e)
-		//{
-
-		//}
-
-		//private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-		//{
-		//	Chi_tiết_lịch_chiếu_phim form2 = new Chi_tiết_lịch_chiếu_phim(); //create an instance of Form 2
-		//	form2.ShowDialog(); //show Form2 á a modal dialog
-		//}
-
 		private void Dashboard__QL__Load(object sender, EventArgs e)
 		{
-			grw_cr.AllowUserToDeleteRows = false;
-			grw_cr.ReadOnly = true;
+			grw_lc.AllowUserToDeleteRows = false;
+			grw_lc.ReadOnly = true;
 			laydulieu();
-			grw_cr.DataSource = ds;
-			grw_cr.DataMember = "LichChieu";
-			grw_cr.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-			grw_cr.Columns[2].Width = 230;
-			grw_cr.Columns[1].Width = 80;
-			grw_cr.Columns[0].Width = 80;
+			grw_lc.DataSource = ds;
+			grw_lc.DataMember = "LichChieu";
+			grw_lc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+			grw_lc.Columns[2].Width = 230;
+			grw_lc.Columns[1].Width = 80;
+			grw_lc.Columns[0].Width = 80;
 		}
 
 		private void label2_Click_1(object sender, EventArgs e)
@@ -79,9 +43,11 @@ namespace Projec_QLDA
 		{
 			try
 			{
-				SqlConnection cn = new SqlConnection("Data Source=DESKTOP-T87PM31\SQLEXPRESS;Initial Catalog=RAP5;Integrated Security=True");
+				SqlConnection cn = new SqlConnection("Data Source=DESKTOP-6B95ADJ\\HUONG;Initial Catalog=RAP5;User ID=sa;Password=nguyennhuhuong");
 				cn.Open();
-				SqlCommand cmd = new SqlCommand("select LichChieu.MaLichChieu, LichChieu.MaPhim, Phim.TenPhim, LichChieu.MaRap, LichChieu.NgayChieu from (LichChieu INNER JOIN Phim ON LichChieu.MaPhim = Phim.MaPhim)", cn);
+				SqlCommand cmd = new SqlCommand("select LichChieu.MaLichChieu, LichChieu.MaPhim, Phim.TenPhim, LichChieu.MaRap, LichChieu.NgayChieu, ChiTietLichChieu.MaSuat from (LichChieu " +
+					"INNER JOIN Phim ON LichChieu.MaPhim = Phim.MaPhim) " +
+					"inner join ChiTietLichChieu on LichChieu.MaLichChieu = ChiTietLichChieu.MaLichChieu", cn);
 				sda.SelectCommand = cmd;
 				sda.Fill(ds, "LichChieu");
 				cn.Close();
@@ -95,7 +61,7 @@ namespace Projec_QLDA
 		{
 			if (i)
 			{
-				grw_cr.ReadOnly = false;
+				grw_lc.ReadOnly = false;
 				bt_chinhsua.Enabled = false;
 				bt_chinhsua.BackColor = SystemColors.ControlLight;
 				bt_them.Enabled = false;
@@ -105,7 +71,7 @@ namespace Projec_QLDA
 			}
 			else
 			{
-				grw_cr.ReadOnly = true;
+				grw_lc.ReadOnly = true;
 				bt_chinhsua.Enabled = true;
 				bt_chinhsua.BackColor = SystemColors.HotTrack;
 				bt_them.Enabled = true;
@@ -144,18 +110,18 @@ namespace Projec_QLDA
 		{
 			sda.Update(ds, "LichChieu");
 			enable(false);
-			grw_cr.AllowUserToDeleteRows = false;
+			grw_lc.AllowUserToDeleteRows = false;
 		}
 
 		private void bt_them_Click(object sender, EventArgs e)
 		{
 			enable(true);
 			// Chuyển đến hàng cuối cùng.
-			grw_cr.FirstDisplayedScrollingRowIndex = grw_cr.Rows.Count - 1;
+			grw_lc.FirstDisplayedScrollingRowIndex = grw_lc.Rows.Count - 1;
 			// Chuyển đến cột đầu tiên.
-			grw_cr.CurrentCell = grw_cr.Rows[grw_cr.Rows.Count - 1].Cells[0];
+			grw_lc.CurrentCell = grw_lc.Rows[grw_lc.Rows.Count - 1].Cells[0];
 			// Bắt đầu chỉnh sửa ô.
-			grw_cr.BeginEdit(true);
+			grw_lc.BeginEdit(true);
 
 			//thiết lập insert
 			SqlCommand icmd = new SqlCommand(
@@ -178,8 +144,8 @@ namespace Projec_QLDA
 		private void bt_xoa_Click(object sender, EventArgs e)
 		{
 			enable(true);
-			grw_cr.ReadOnly = true;
-			grw_cr.AllowUserToDeleteRows = true;
+			grw_lc.ReadOnly = true;
+			grw_lc.AllowUserToDeleteRows = true;
 			SqlCommand dcmd = new SqlCommand(
 				"delete from LichChieu where malichchieu = @malichchieu", cn);
 			SqlParameter dmalichchieu = new SqlParameter(
@@ -202,14 +168,14 @@ namespace Projec_QLDA
 			ds.Tables["LichChieu"].Clear();
 			sda.Fill(ds, "LichChieu");
 			cn.Close();
-			grw_cr.DataSource = ds;
-			grw_cr.DataMember = "LichChieu";
+			grw_lc.DataSource = ds;
+			grw_lc.DataMember = "LichChieu";
 			if (string.IsNullOrEmpty(textBox1.Text))
 			{
 				// Truy vấn tất cả các sản phẩm trong table và hiển thị chúng trong DataGridView.
 				laydulieu();
-				grw_cr.DataSource = ds;
-				grw_cr.DataMember = "LichChieu";
+				grw_lc.DataSource = ds;
+				grw_lc.DataMember = "LichChieu";
 			}
 
 		}
@@ -222,7 +188,21 @@ namespace Projec_QLDA
 				textBox1.ForeColor = Color.Black;
 			}
 		}
-	}
+
+        private void grw_cr_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+			ChitietLichChieu form = new ChitietLichChieu();
+			form.malc = grw_lc.CurrentRow.Cells[0].Value.ToString(); 
+			form.mar = grw_lc.CurrentRow.Cells[3].Value.ToString();
+			form.ngaychieu = grw_lc.CurrentRow.Cells[4].Value.ToString();
+			form.tenphim = grw_lc.CurrentRow.Cells[2].Value.ToString();
+			form.map = grw_lc.CurrentRow.Cells[1].Value.ToString();
+			form.masuat = grw_lc.CurrentRow.Cells[5].Value.ToString();
+			this.Hide();
+			form.ShowDialog();
+
+        }
+    }
 }
 
 

@@ -43,14 +43,14 @@ namespace Projec_QLDA
             this.bt_tim = new System.Windows.Forms.Button();
             this.bt_xoa = new System.Windows.Forms.Button();
             this.bt_them = new System.Windows.Forms.Button();
-            this.grw_cr = new System.Windows.Forms.DataGridView();
+            this.grw_lc = new System.Windows.Forms.DataGridView();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.bt_luu = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.bt_chinhsua = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grw_cr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grw_lc)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -59,7 +59,7 @@ namespace Projec_QLDA
             this.label1.Location = new System.Drawing.Point(4, 261);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 17);
+            this.label1.Size = new System.Drawing.Size(0, 16);
             this.label1.TabIndex = 46;
             // 
             // menuStrip1
@@ -80,7 +80,7 @@ namespace Projec_QLDA
             this.trangChủToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.trangChủToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Highlight;
             this.trangChủToolStripMenuItem.Name = "trangChủToolStripMenuItem";
-            this.trangChủToolStripMenuItem.Size = new System.Drawing.Size(109, 29);
+            this.trangChủToolStripMenuItem.Size = new System.Drawing.Size(102, 29);
             this.trangChủToolStripMenuItem.Text = "Trang chủ";
             // 
             // chứcNăngToolStripMenuItem
@@ -93,35 +93,35 @@ namespace Projec_QLDA
             this.chứcNăngToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chứcNăngToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Highlight;
             this.chứcNăngToolStripMenuItem.Name = "chứcNăngToolStripMenuItem";
-            this.chứcNăngToolStripMenuItem.Size = new System.Drawing.Size(117, 29);
+            this.chứcNăngToolStripMenuItem.Size = new System.Drawing.Size(111, 29);
             this.chứcNăngToolStripMenuItem.Text = "Chức năng";
             // 
             // quảnLýKếHoạchChiếuPhimToolStripMenuItem
             // 
             this.quảnLýKếHoạchChiếuPhimToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quảnLýKếHoạchChiếuPhimToolStripMenuItem.Name = "quảnLýKếHoạchChiếuPhimToolStripMenuItem";
-            this.quảnLýKếHoạchChiếuPhimToolStripMenuItem.Size = new System.Drawing.Size(343, 30);
+            this.quảnLýKếHoạchChiếuPhimToolStripMenuItem.Size = new System.Drawing.Size(327, 30);
             this.quảnLýKếHoạchChiếuPhimToolStripMenuItem.Text = "Quản lý kế hoạch chiếu phim";
             // 
             // quảnLýLịchChiếuPhimToolStripMenuItem
             // 
             this.quảnLýLịchChiếuPhimToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quảnLýLịchChiếuPhimToolStripMenuItem.Name = "quảnLýLịchChiếuPhimToolStripMenuItem";
-            this.quảnLýLịchChiếuPhimToolStripMenuItem.Size = new System.Drawing.Size(343, 30);
+            this.quảnLýLịchChiếuPhimToolStripMenuItem.Size = new System.Drawing.Size(327, 30);
             this.quảnLýLịchChiếuPhimToolStripMenuItem.Text = "Quản lý lịch chiếu phim";
             // 
             // quảnLýPhimToolStripMenuItem
             // 
             this.quảnLýPhimToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quảnLýPhimToolStripMenuItem.Name = "quảnLýPhimToolStripMenuItem";
-            this.quảnLýPhimToolStripMenuItem.Size = new System.Drawing.Size(343, 30);
+            this.quảnLýPhimToolStripMenuItem.Size = new System.Drawing.Size(327, 30);
             this.quảnLýPhimToolStripMenuItem.Text = "Quản lý phim";
             // 
             // quảnLýCụmRạpToolStripMenuItem
             // 
             this.quảnLýCụmRạpToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quảnLýCụmRạpToolStripMenuItem.Name = "quảnLýCụmRạpToolStripMenuItem";
-            this.quảnLýCụmRạpToolStripMenuItem.Size = new System.Drawing.Size(343, 30);
+            this.quảnLýCụmRạpToolStripMenuItem.Size = new System.Drawing.Size(327, 30);
             this.quảnLýCụmRạpToolStripMenuItem.Text = "Quản lý cụm rạp";
             // 
             // bt_tim
@@ -172,15 +172,16 @@ namespace Projec_QLDA
             this.bt_them.UseVisualStyleBackColor = false;
             this.bt_them.Click += new System.EventHandler(this.bt_them_Click);
             // 
-            // grw_cr
+            // grw_lc
             // 
-            this.grw_cr.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grw_cr.Location = new System.Drawing.Point(12, 178);
-            this.grw_cr.Name = "grw_cr";
-            this.grw_cr.RowHeadersWidth = 51;
-            this.grw_cr.RowTemplate.Height = 24;
-            this.grw_cr.Size = new System.Drawing.Size(987, 372);
-            this.grw_cr.TabIndex = 135;
+            this.grw_lc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grw_lc.Location = new System.Drawing.Point(12, 178);
+            this.grw_lc.Name = "grw_lc";
+            this.grw_lc.RowHeadersWidth = 51;
+            this.grw_lc.RowTemplate.Height = 24;
+            this.grw_lc.Size = new System.Drawing.Size(987, 372);
+            this.grw_lc.TabIndex = 135;
+            this.grw_lc.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grw_cr_CellContentClick);
             // 
             // textBox1
             // 
@@ -262,7 +263,7 @@ namespace Projec_QLDA
             this.Controls.Add(this.bt_tim);
             this.Controls.Add(this.bt_xoa);
             this.Controls.Add(this.bt_them);
-            this.Controls.Add(this.grw_cr);
+            this.Controls.Add(this.grw_lc);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.bt_luu);
             this.Controls.Add(this.button3);
@@ -277,7 +278,7 @@ namespace Projec_QLDA
             this.Load += new System.EventHandler(this.Dashboard__QL__Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grw_cr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grw_lc)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -296,7 +297,7 @@ namespace Projec_QLDA
         private System.Windows.Forms.Button bt_tim;
         private System.Windows.Forms.Button bt_xoa;
         private System.Windows.Forms.Button bt_them;
-        private System.Windows.Forms.DataGridView grw_cr;
+        private System.Windows.Forms.DataGridView grw_lc;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button bt_luu;
         private System.Windows.Forms.Button button3;
