@@ -49,6 +49,17 @@ namespace Projec_QLDA
             this.button3 = new System.Windows.Forms.Button();
             this.bt_chinhsua = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tb_malc = new System.Windows.Forms.TextBox();
+            this.cb_p = new System.Windows.Forms.ComboBox();
+            this.cb_suatchieu = new System.Windows.Forms.ComboBox();
+            this.cb_mar = new System.Windows.Forms.ComboBox();
+            this.dT_ngaychieu = new System.Windows.Forms.DateTimePicker();
+            this.label8 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grw_lc)).BeginInit();
             this.SuspendLayout();
@@ -131,7 +142,7 @@ namespace Projec_QLDA
             this.bt_tim.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_tim.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_tim.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.bt_tim.Location = new System.Drawing.Point(12, 136);
+            this.bt_tim.Location = new System.Drawing.Point(878, 79);
             this.bt_tim.Margin = new System.Windows.Forms.Padding(4);
             this.bt_tim.Name = "bt_tim";
             this.bt_tim.Size = new System.Drawing.Size(125, 35);
@@ -147,7 +158,7 @@ namespace Projec_QLDA
             this.bt_xoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_xoa.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_xoa.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.bt_xoa.Location = new System.Drawing.Point(874, 97);
+            this.bt_xoa.Location = new System.Drawing.Point(336, 249);
             this.bt_xoa.Margin = new System.Windows.Forms.Padding(4);
             this.bt_xoa.Name = "bt_xoa";
             this.bt_xoa.Size = new System.Drawing.Size(125, 35);
@@ -163,7 +174,7 @@ namespace Projec_QLDA
             this.bt_them.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_them.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_them.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.bt_them.Location = new System.Drawing.Point(548, 97);
+            this.bt_them.Location = new System.Drawing.Point(10, 249);
             this.bt_them.Margin = new System.Windows.Forms.Padding(4);
             this.bt_them.Name = "bt_them";
             this.bt_them.Size = new System.Drawing.Size(125, 35);
@@ -175,23 +186,24 @@ namespace Projec_QLDA
             // grw_lc
             // 
             this.grw_lc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grw_lc.Location = new System.Drawing.Point(12, 178);
+            this.grw_lc.Location = new System.Drawing.Point(12, 330);
             this.grw_lc.Name = "grw_lc";
             this.grw_lc.RowHeadersWidth = 51;
             this.grw_lc.RowTemplate.Height = 24;
-            this.grw_lc.Size = new System.Drawing.Size(987, 372);
+            this.grw_lc.Size = new System.Drawing.Size(987, 220);
             this.grw_lc.TabIndex = 135;
             this.grw_lc.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grw_lc_CellContentClick);
+            this.grw_lc.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grw_lc_CellContentDoubleClick);
             // 
             // textBox1
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.textBox1.Location = new System.Drawing.Point(12, 97);
+            this.textBox1.Location = new System.Drawing.Point(706, 79);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(477, 31);
+            this.textBox1.Size = new System.Drawing.Size(164, 31);
             this.textBox1.TabIndex = 134;
             this.textBox1.Text = "Tìm kiếm theo mã cụm rạp";
             this.textBox1.Click += new System.EventHandler(this.textBox1_Click);
@@ -203,7 +215,7 @@ namespace Projec_QLDA
             this.bt_luu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_luu.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_luu.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.bt_luu.Location = new System.Drawing.Point(874, 136);
+            this.bt_luu.Location = new System.Drawing.Point(10, 292);
             this.bt_luu.Margin = new System.Windows.Forms.Padding(4);
             this.bt_luu.Name = "bt_luu";
             this.bt_luu.Size = new System.Drawing.Size(125, 35);
@@ -219,7 +231,7 @@ namespace Projec_QLDA
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button3.Location = new System.Drawing.Point(861, 96);
+            this.button3.Location = new System.Drawing.Point(323, 248);
             this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(0, 0);
@@ -234,7 +246,7 @@ namespace Projec_QLDA
             this.bt_chinhsua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_chinhsua.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_chinhsua.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.bt_chinhsua.Location = new System.Drawing.Point(713, 97);
+            this.bt_chinhsua.Location = new System.Drawing.Point(175, 249);
             this.bt_chinhsua.Margin = new System.Windows.Forms.Padding(4);
             this.bt_chinhsua.Name = "bt_chinhsua";
             this.bt_chinhsua.Size = new System.Drawing.Size(125, 35);
@@ -254,12 +266,115 @@ namespace Projec_QLDA
             this.label2.Text = "LỊCH CHIẾU PHIM";
             this.label2.Click += new System.EventHandler(this.label2_Click_1);
             // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(12, 88);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(124, 32);
+            this.label3.TabIndex = 139;
+            this.label3.Text = "Mã Lịch Chiếu:";
+            // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(514, 140);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(112, 32);
+            this.label4.TabIndex = 140;
+            this.label4.Text = "Suất Chiếu";
+            // 
+            // label5
+            // 
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(514, 198);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(112, 32);
+            this.label5.TabIndex = 141;
+            this.label5.Text = "Ngày Chiếu:";
+            // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(12, 193);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(112, 32);
+            this.label6.TabIndex = 142;
+            this.label6.Text = "Mã Rạp";
+            // 
+            // label7
+            // 
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(12, 140);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(112, 32);
+            this.label7.TabIndex = 143;
+            this.label7.Text = "Phim:";
+            // 
+            // tb_malc
+            // 
+            this.tb_malc.Location = new System.Drawing.Point(148, 85);
+            this.tb_malc.Name = "tb_malc";
+            this.tb_malc.Size = new System.Drawing.Size(117, 22);
+            this.tb_malc.TabIndex = 144;
+            // 
+            // cb_p
+            // 
+            this.cb_p.FormattingEnabled = true;
+            this.cb_p.Location = new System.Drawing.Point(104, 138);
+            this.cb_p.Name = "cb_p";
+            this.cb_p.Size = new System.Drawing.Size(282, 24);
+            this.cb_p.TabIndex = 145;
+            // 
+            // cb_suatchieu
+            // 
+            this.cb_suatchieu.FormattingEnabled = true;
+            this.cb_suatchieu.Location = new System.Drawing.Point(620, 140);
+            this.cb_suatchieu.Name = "cb_suatchieu";
+            this.cb_suatchieu.Size = new System.Drawing.Size(250, 24);
+            this.cb_suatchieu.TabIndex = 146;
+            // 
+            // cb_mar
+            // 
+            this.cb_mar.FormattingEnabled = true;
+            this.cb_mar.Location = new System.Drawing.Point(104, 193);
+            this.cb_mar.Name = "cb_mar";
+            this.cb_mar.Size = new System.Drawing.Size(282, 24);
+            this.cb_mar.TabIndex = 147;
+            // 
+            // dT_ngaychieu
+            // 
+            this.dT_ngaychieu.Location = new System.Drawing.Point(620, 198);
+            this.dT_ngaychieu.Name = "dT_ngaychieu";
+            this.dT_ngaychieu.Size = new System.Drawing.Size(250, 22);
+            this.dT_ngaychieu.TabIndex = 148;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(570, 250);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(44, 16);
+            this.label8.TabIndex = 149;
+            this.label8.Text = "label8";
+            // 
             // Dashboard__QL_
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1016, 562);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.dT_ngaychieu);
+            this.Controls.Add(this.cb_mar);
+            this.Controls.Add(this.cb_suatchieu);
+            this.Controls.Add(this.cb_p);
+            this.Controls.Add(this.tb_malc);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.bt_tim);
             this.Controls.Add(this.bt_xoa);
             this.Controls.Add(this.bt_them);
@@ -303,6 +418,17 @@ namespace Projec_QLDA
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button bt_chinhsua;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox tb_malc;
+        private System.Windows.Forms.ComboBox cb_p;
+        private System.Windows.Forms.ComboBox cb_suatchieu;
+        private System.Windows.Forms.ComboBox cb_mar;
+        private System.Windows.Forms.DateTimePicker dT_ngaychieu;
+        private System.Windows.Forms.Label label8;
     }
 }
 

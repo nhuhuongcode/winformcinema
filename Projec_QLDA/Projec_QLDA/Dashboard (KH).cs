@@ -13,7 +13,7 @@ namespace Projec_QLDA
 {
     public partial class Form1 : Form
     {
-        SqlConnection cn = new SqlConnection("Data Source=DESKTOP-T87PM31\\SQLEXPRESS;Initial Catalog=RAP5;Integrated Security=True");
+        SqlConnection cn = new SqlConnection("Data Source=DESKTOP-6B95ADJ\\HUONG;Initial Catalog=RAP5;User ID=sa;Password=nguyennhuhuong");
 
         public SqlDataAdapter sda = new SqlDataAdapter();
         public DataSet ds = new DataSet();
@@ -86,7 +86,7 @@ namespace Projec_QLDA
         {
             try
             {
-                SqlConnection cn = new SqlConnection("Data Source=DESKTOP-T87PM31\\SQLEXPRESS;Initial Catalog=RAP5;Integrated Security=True");
+                SqlConnection cn = new SqlConnection("Data Source=DESKTOP-6B95ADJ\\HUONG;Initial Catalog=RAP5;User ID=sa;Password=nguyennhuhuong");
                 cn.Open();
                 SqlCommand cmd = new SqlCommand("select * from KeHoach", cn);
                 sda.SelectCommand = cmd;
@@ -147,12 +147,6 @@ namespace Projec_QLDA
             sda.UpdateCommand = ucmd;
         }
 
-        private void bt_luu_Click(object sender, EventArgs e)
-        {
-            sda.Update(ds, "KeHoach");
-            enable(false);
-            grw_kh.AllowUserToDeleteRows = false;
-        }
 
         private void bt_them_Click(object sender, EventArgs e)
         {
@@ -182,9 +176,29 @@ namespace Projec_QLDA
             icmd.Parameters.Add(ingaykhoichieu);
             icmd.Parameters.Add(ingayketthuc);
             icmd.Parameters.Add(ighichu);
-            sda.UpdateCommand = icmd;
+            sda.InsertCommand = icmd;
         }
+        private void bt_luu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                sda.Update(ds, "KeHoach");
+                enable(false);
+                grw_kh.AllowUserToDeleteRows = false;
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 547)
+                {
+                    MessageBox.Show("Không thể xóa thông tin này!", "Error");
+                }
+                else if (ex.Number == 2627)
+                {
+                    MessageBox.Show("Thông tin này đã tồn tại", "Error");
+                }
 
+            }
+        }
         private void bt_xoa_Click(object sender, EventArgs e)
         {
             enable(true);
