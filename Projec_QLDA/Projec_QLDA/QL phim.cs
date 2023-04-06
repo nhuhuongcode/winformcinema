@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using Projec_QLDA;
+using WindowsFormsApp2;
+using WindowsFormsApp1;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
@@ -24,7 +27,7 @@ namespace WindowsFormsApp3
 			InitializeComponent();
 		}
 
-	
+
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
@@ -34,10 +37,12 @@ namespace WindowsFormsApp3
 			grw_phim.DataSource = ds;
 			grw_phim.DataMember = "Phim";
 			grw_phim.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-			grw_phim.Columns[1].Width = 260;
-			grw_phim.Columns[0].Width = 60;
-			grw_phim.Columns[2].Width = 110;
+			grw_phim.Columns[1].Width = 230;
+			grw_phim.Columns[0].Width = 50;
+			grw_phim.Columns[2].Width = 80;
+			grw_phim.Columns[3].Width = 120;
 
+			//lb_tlp.Visible = false;
 
 
 		}
@@ -48,15 +53,39 @@ namespace WindowsFormsApp3
 			{
 				SqlConnection cn = new SqlConnection(@"Data Source=DESKTOP-DDKM1BA\HAO;Initial Catalog=RAP5;Integrated Security=True");
 				cn.Open();
-				SqlCommand cmd = new SqlCommand("select Phim.MaPhim,  Phim.TenPhim, TheLoai.TenTheLoai, Phim.ThoiLuong, Phim.CoLa3D, Phim.CoLongTieng from(TheLoai INNER JOIN Phim ON TheLoai.MaTheLoai = Phim.MaTheLoaiChinh) ", cn);
+				SqlCommand cmd = new SqlCommand("SELECT phim.MaPhim, Phim.TenPhim, TheLoai.TenTheLoai as TheLoaiChinh, TenTheLoaiPhu, Phim.ThoiLuong, Phim.CoLa3D, Phim.CoLongTieng FROM Phim left join (SELECT PhimTheLoaiPhu.MaPhim, isnull(STRING_AGG(TheLoai.TenTheLoai, ', '), '') AS TenTheLoaiPhu FROM PhimTheLoaiPhu INNER JOIN TheLoai ON PhimTheLoaiPhu.MaTheLoai = TheLoai.MaTheLoai GROUP BY PhimTheLoaiPhu.MaPhim) as PhimPhim on phim.MaPhim = PhimPhim.MaPhim inner join TheLoai on TheLoai.MaTheLoai = Phim.MaTheLoaiChinh;", cn);
 				sda.SelectCommand = cmd;
 				sda.Fill(ds, "Phim");
+
+				SqlCommand cmdtl = new SqlCommand("select matheloai, tentheloai, matheloai +': '+ tentheloai as TheLoaiChinh from TheLoai", cn);
+				SqlDataAdapter sdaphim = new SqlDataAdapter();
+				SqlDataAdapter sdatl = new SqlDataAdapter();
+
+				sdatl.SelectCommand = cmdtl;
+				sdatl.Fill(ds, "TheLoai");
+
+				SqlCommand cmdtlp = new SqlCommand("select matheloai, tentheloai, matheloai +': '+ tentheloai as TheLoaiPhu from TheLoai", cn);
+				SqlDataAdapter sdatlp = new SqlDataAdapter();
+				sdatlp.SelectCommand = cmdtlp;
+				sdatlp.Fill(ds, "TheLoaiPhu");
+
+				SqlCommand command = new SqlCommand("SELECT Cola3D FROM Phim", cn);
+				SqlDataReader reader = command.ExecuteReader();
+
+				if (reader.Read())
+				{
+					checkBox1.Checked = (bool)reader["Cola3D"];
+				}
+
+
 				cn.Close();
 			}
 			catch (Exception ex)
 			{
 				MessageBox.Show(ex.Message);
 			}
+
+
 		}
 		private void label1_Click(object sender, EventArgs e)
 		{
@@ -74,6 +103,15 @@ namespace WindowsFormsApp3
 				bt_them.BackColor = SystemColors.ControlLight;
 				bt_xoa.Enabled = false;
 				bt_xoa.BackColor = SystemColors.ControlLight;
+
+				cb_tlc.DataSource = ds.Tables["TheLoai"];
+				cb_tlc.ValueMember = "matheloai";
+				cb_tlc.DisplayMember = "TheLoaiChinh";
+
+				cb_tlp.DataSource = ds.Tables["TheLoaiPhu"];
+				cb_tlp.ValueMember = "tentheloai";
+				cb_tlp.DisplayMember = "TheLoaiPhu";
+
 			}
 			else
 			{
@@ -84,44 +122,17 @@ namespace WindowsFormsApp3
 				bt_them.BackColor = SystemColors.HotTrack;
 				bt_xoa.Enabled = true;
 				bt_xoa.BackColor = SystemColors.HotTrack;
+				tb_maphim.ReadOnly = true;
 			}
 
 		}
-		
 
+		public bool them = false;
 		private void bt_them_Click_1(object sender, EventArgs e)
 		{
-
 			enable(true);
-			// Chuyển đến hàng cuối cùng.
-			grw_phim.FirstDisplayedScrollingRowIndex = grw_phim.Rows.Count - 1;
-			// Chuyển đến cột đầu tiên.
-			grw_phim.CurrentCell = grw_phim.Rows[grw_phim.Rows.Count - 1].Cells[0];
-			// Bắt đầu chỉnh sửa ô.
-			grw_phim.BeginEdit(true);
-
-			//thiết lập insert
-			SqlCommand icmd = new SqlCommand(
-				"insert into Phim values (@maphim , @tenphim, @tentheloai, @cola3d, @colongtieng, @cola3d, @thoiluong)", cn);
-			SqlParameter imaphim = new SqlParameter(
-				"@maphim", SqlDbType.VarChar, 5, "MaPhim");
-			SqlParameter itenphim = new SqlParameter(
-				"@tenphim", SqlDbType.NVarChar, 50, "TenPhim");
-			SqlParameter idiachi = new SqlParameter(
-				"@tentheloai", SqlDbType.NVarChar, 50, "TenTheLoai");
-			SqlParameter icola3d = new SqlParameter(
-				"@cola3d", SqlDbType.Bit, 0, "CoLa3D");
-			SqlParameter icolongtieng = new SqlParameter(
-				"@colongtieng", SqlDbType.Bit, 0, "CoLongTieng");
-			SqlParameter ithoiluong = new SqlParameter(
-				"@thoiluong", SqlDbType.Int, 200, "ThoiLuong");
-			icmd.Parameters.Add(itenphim);
-			icmd.Parameters.Add(imaphim);
-			icmd.Parameters.Add(idiachi);
-			icmd.Parameters.Add(icola3d);
-			icmd.Parameters.Add(icolongtieng);
-			icmd.Parameters.Add(ithoiluong);
-			sda.InsertCommand = icmd;
+			them = true;
+			tb_maphim.Focus();
 		}
 
 		private void bt_tim_Click_1(object sender, EventArgs e)
@@ -129,10 +140,10 @@ namespace WindowsFormsApp3
 
 			cn.Open();
 			SqlCommand fcmd = new SqlCommand(
-				"select * from Phim where maphim = @maphim", cn);
+				"SELECT phim.MaPhim, Phim.TenPhim, TheLoai.TenTheLoai as TheLoaiChinh, TenTheLoaiPhu, Phim.ThoiLuong, Phim.CoLa3D, Phim.CoLongTieng FROM Phim left join (SELECT PhimTheLoaiPhu.MaPhim, isnull(STRING_AGG(TheLoai.TenTheLoai, ', '), '') AS TenTheLoaiPhu FROM PhimTheLoaiPhu INNER JOIN TheLoai ON PhimTheLoaiPhu.MaTheLoai = TheLoai.MaTheLoai GROUP BY PhimTheLoaiPhu.MaPhim) as PhimPhim on phim.MaPhim = PhimPhim.MaPhim inner join TheLoai on TheLoai.MaTheLoai = Phim.MaTheLoaiChinh where Phim.maphim = '" + tb_tim.Text.Trim() + "';", cn);
 			SqlParameter fmacum = new SqlParameter(
 				"@maphim", SqlDbType.VarChar, 5);
-			fmacum.Value = textBox1.Text.ToString().Trim();
+			fmacum.Value = tb_tim.Text.ToString().Trim();
 			fcmd.Parameters.Add(fmacum);
 			sda.SelectCommand = fcmd;
 			ds.Tables["Phim"].Clear();
@@ -140,7 +151,7 @@ namespace WindowsFormsApp3
 			cn.Close();
 			grw_phim.DataSource = ds;
 			grw_phim.DataMember = "Phim";
-			if (string.IsNullOrEmpty(textBox1.Text))
+			if (string.IsNullOrEmpty(tb_tim.Text))
 			{
 				// Truy vấn tất cả các sản phẩm trong table và hiển thị chúng trong DataGridView.
 				laydulieu();
@@ -163,7 +174,7 @@ namespace WindowsFormsApp3
 			sda.DeleteCommand = dcmd;
 		}
 
-		
+
 
 		private void bt_sua_Click(object sender, EventArgs e)
 		{
@@ -196,35 +207,165 @@ namespace WindowsFormsApp3
 
 		private void textBox1_Click(object sender, EventArgs e)
 		{
-			if (textBox1.Text == "Tìm kiếm theo mã phim")
+			if (tb_tim.Text == "Tìm kiếm theo mã phim")
 			{
-				textBox1.Text = "";
-				textBox1.ForeColor = Color.Black;
+				tb_tim.Text = "";
+				tb_tim.ForeColor = Color.Black;
 			}
 		}
 
 		private void bt_luu_Click_1(object sender, EventArgs e)
 		{
-			try
+			enable(true);
+			if (tb_maphim.Text != "")
 			{
-				sda.Update(ds, "Phim");
-				enable(false);
-				grw_phim.AllowUserToDeleteRows = false;
-			}
-			catch (SqlException ex)
-			{
-				if (ex.Number == 547)
+				if (them == true)
 				{
-					MessageBox.Show("Không thể xóa thông tin phim này!", "Error");
-				}
-				else if (ex.Number == 2627)
-				{
-					MessageBox.Show("Mã phim đã tồn tại", "Error");
-				}
+					SqlCommand command = new SqlCommand();
+					command = cn.CreateCommand();
+					try
+					{
+						int bad = ktrcheckbox(checkBox1);
+						int longtieng = ktrcheckbox(checkBox2);
+						cn.Open();
+						command.CommandText = "insert into Phim values ('" + tb_maphim.Text.Trim() + "',N'" + tb_tenphim.Text.Trim() + "','" + cb_tlc.SelectedValue + "'," + tb_thoiluong.Text.Trim() + "," + bad + "," + longtieng + ")";
+						command.ExecuteNonQuery();
+						//command.CommandText = "insert into PhimTheLoaiPhu values ('" + lb_tlp.SelectedValue +  "')";
+						foreach (var item in lb_tlp.Items)
+						{
+							command.CommandText = "select matheloai from theloai where tentheloai = N'" + item.ToString() + "'";
+							string matheloai = (string)command.ExecuteScalar();
+							command.CommandText = "insert into PhimTheLoaiPhu values ('" + tb_maphim.Text.Trim() + "','" + matheloai + "')";
+							command.ExecuteNonQuery();
+						}
+						MessageBox.Show("Cập nhật thành công");
+						sda.Fill(ds, "Phim");
+						them = false;
+						enable(false);
+						cn.Close();
+					}
+					catch (SqlException ex)
+					{
+						if (ex.Number == 2627)
+						{
+							MessageBox.Show("Mã phim đã tồn tại", "Error");
+						}
+						else
+						{
+							MessageBox.Show(ex.Message);
+						}
+						cn.Close();
 
+					}
+				}
+			}
+			else
+			{
+				MessageBox.Show("Vui lòng nhập mã phim", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				bt_them_Click_1(sender, e);
+				tb_maphim.Focus();
 			}
 
 
 		}
+
+		private void grw_phim_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		{
+			tb_maphim.Text = grw_phim.CurrentRow.Cells[0].Value.ToString();
+			cb_tlc.Text = grw_phim.CurrentRow.Cells[2].Value.ToString();
+			tb_tenphim.Text = grw_phim.CurrentRow.Cells[1].Value.ToString();
+
+		}
+
+		public int ktrcheckbox(CheckBox a)
+		{
+			if (a.Checked == true)
+			{ return 1; }
+			return 0;
+		}
+
+		private void cb_tlp_SelectedIndexChanged(object sender, EventArgs e)
+		{
+
+			string selectedValue = cb_tlp.SelectedValue.ToString();
+
+			if (!lb_tlp.Items.Contains(selectedValue))
+			{
+				if (!selectedValue.Contains('.'))
+				{
+					lb_tlp.Items.Add(selectedValue);
+				}
+			}
+		}
+
+		private void lb_tlp_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Delete)
+			{
+				int selectedIndex = lb_tlp.SelectedIndex;
+				if (selectedIndex != -1)
+				{
+					lb_tlp.Items.RemoveAt(selectedIndex);
+				}
+			}
+
+		}
+
+		private void cb_tlp_Click(object sender, EventArgs e)
+		{
+
+
+		}
+		private void trangChủToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			this.Hide();
+			ManHinhChinh manHinhChinh = new ManHinhChinh();
+			manHinhChinh.ShowDialog();
+		}
+
+		private void quảnLýKếHoạchChiếuPhimToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			this.Hide();
+			Form1 dashboard__kh_ = new Form1();
+			dashboard__kh_.ShowDialog();
+		}
+
+		private void quảnLýLịchChiếuPhimToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			this.Hide();
+			Dashboard__QL_ dashboard__QL_ = new Dashboard__QL_();
+			dashboard__QL_.ShowDialog();
+		}
+
+		private void quảnLýPhimToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			this.Hide();
+			QL_Phim qL_Phim = new QL_Phim();
+			qL_Phim.ShowDialog();
+		}
+
+		private void quảnLýCụmRạpToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			this.Hide();
+			QL_CumRap qL_CumRap = new QL_CumRap();
+			qL_CumRap.ShowDialog();
+		}
+
+		private void quảnLýThểLoạiToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			this.Hide();
+			The_loai_phim the_Loai_Phim = new The_loai_phim();
+			the_Loai_Phim.ShowDialog();
+		}
+
+		private void quảnLýRạpToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			this.Hide();
+			QL_Rap qL_Rap = new QL_Rap();
+			qL_Rap.ShowDialog();
+		}
+
 	}
 }
+
+
