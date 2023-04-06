@@ -41,14 +41,50 @@ namespace Projec_QLDA
         private void button1_Click(object sender, EventArgs e)
         {
             //  ví dụ điều kiện để đăng nhập
-            if (textBox2.Text == "1234")
-                MessageBox.Show("   Đăng nhập thành công  ");
+            if
+                (textBox2.Text == "1234")
+            {
+                MessageBox.Show("     Đăng nhập thành công  ");
+                this.Hide();
+                ManHinhChinh manhinhchinh = new ManHinhChinh();
+                manhinhchinh.ShowDialog();
+            }
+
+
             else
-                MessageBox.Show("          Đăng nhập thất bại \n" + 
-                    " Thông tin đăng nhập sai hoặc mật khẩu sai");
+            {
+                MessageBox.Show("                        Đăng nhập thất bại \n" +
+                   "   Thông tin đăng nhập sai hoặc mật khẩu sai");
+            }
+            
         }
 
         private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label19_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label17_Click(object sender, EventArgs e)
         {
 
         }
