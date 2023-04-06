@@ -44,7 +44,7 @@ namespace Projec_QLDA
             if
                 (textBox2.Text == "1234")
             {
-                MessageBox.Show("     Đăng nhập thành công  ");
+                //MessageBox.Show("     Đăng nhập thành công  ");
                 this.Hide();
                 ManHinhChinh manhinhchinh = new ManHinhChinh();
                 manhinhchinh.ShowDialog();

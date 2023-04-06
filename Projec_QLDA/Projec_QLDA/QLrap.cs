@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp2;
-
+using WindowsFormsApp3;
 
 namespace WindowsFormsApp1
 {
@@ -192,5 +192,55 @@ namespace WindowsFormsApp1
                 }
             }
         }
+
+        private void trangChủToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ManHinhChinh manHinhChinh = new ManHinhChinh();
+            manHinhChinh.ShowDialog();
+        }
+
+        private void quảnLýKếHoạchChiếuPhimToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form1 dashboard__kh_ = new Form1();
+            dashboard__kh_.ShowDialog();
+        }
+
+        private void quảnLýLịchChiếuPhimToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Dashboard__QL_ dashboard__QL_ = new Dashboard__QL_();
+            dashboard__QL_.ShowDialog();
+        }
+
+        private void quảnLýPhimToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            QL_Phim qL_Phim = new QL_Phim();
+            qL_Phim.ShowDialog();
+        }
+
+        private void quảnLýCụmRạpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            QL_CumRap qL_CumRap = new QL_CumRap();
+            qL_CumRap.ShowDialog();
+        }
+
+        private void quảnLýThểLoạiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            The_loai_phim the_Loai_Phim = new The_loai_phim();
+            the_Loai_Phim.ShowDialog();
+        }
+
+        private void quảnLýRạpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            QL_Rap qL_Rap = new QL_Rap();
+            qL_Rap.ShowDialog();
+        }
     }
+    
 }
