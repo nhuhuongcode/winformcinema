@@ -238,7 +238,7 @@ namespace Projec_QLDA
         {
             cn.Open();
             SqlCommand fcmd = new SqlCommand(
-                "select * from KeHoach where maphim = @maphim");
+                "select * from KeHoach where maphim = @maphim",cn);
             SqlParameter fmaphim = new SqlParameter(
                 "@maphim", SqlDbType.VarChar, 10 );
             fmaphim.Value = textBox1.Text.ToString().Trim();
@@ -258,14 +258,7 @@ namespace Projec_QLDA
 
         }
 
-        private void textBox1_Click(object sender, EventArgs e)
-        {
-            if (textBox1.Text == "Tìm kiếm theo mã phim")
-            {
-                textBox1.Text = "";
-                textBox1.ForeColor = Color.Black;
-            }
-        }
+        
 
         private void trangChủToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -316,6 +309,18 @@ namespace Projec_QLDA
             QL_Rap qL_Rap = new QL_Rap();
             qL_Rap.ShowDialog();
         }
+
+        private void textBox1_Click_1(object sender, EventArgs e)
+        {
+
+            if (textBox1.Text == "Tìm kiếm theo mã phim")
+            {
+                textBox1.Text = "";
+                textBox1.ForeColor = Color.Black;
+            }
+        }
+
+
 
 
 

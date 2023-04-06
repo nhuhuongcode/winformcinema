@@ -40,6 +40,8 @@ namespace Projec_QLDA
             this.quảnLýLịchChiếuPhimToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quảnLýPhimToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quảnLýCụmRạpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quảnLýThểLoạiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quảnLýRạpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bt_tim = new System.Windows.Forms.Button();
             this.bt_xoa = new System.Windows.Forms.Button();
             this.bt_them = new System.Windows.Forms.Button();
@@ -49,8 +51,6 @@ namespace Projec_QLDA
             this.button3 = new System.Windows.Forms.Button();
             this.bt_chinhsua = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.quảnLýThểLoạiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.quảnLýRạpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grw_kh)).BeginInit();
             this.SuspendLayout();
@@ -133,6 +133,20 @@ namespace Projec_QLDA
             this.quảnLýCụmRạpToolStripMenuItem.Text = "Quản lý cụm rạp";
             this.quảnLýCụmRạpToolStripMenuItem.Click += new System.EventHandler(this.quảnLýCụmRạpToolStripMenuItem_Click);
             // 
+            // quảnLýThểLoạiToolStripMenuItem
+            // 
+            this.quảnLýThểLoạiToolStripMenuItem.Name = "quảnLýThểLoạiToolStripMenuItem";
+            this.quảnLýThểLoạiToolStripMenuItem.Size = new System.Drawing.Size(268, 24);
+            this.quảnLýThểLoạiToolStripMenuItem.Text = "Quản lý thể loại";
+            this.quảnLýThểLoạiToolStripMenuItem.Click += new System.EventHandler(this.quảnLýThểLoạiToolStripMenuItem_Click);
+            // 
+            // quảnLýRạpToolStripMenuItem
+            // 
+            this.quảnLýRạpToolStripMenuItem.Name = "quảnLýRạpToolStripMenuItem";
+            this.quảnLýRạpToolStripMenuItem.Size = new System.Drawing.Size(268, 24);
+            this.quảnLýRạpToolStripMenuItem.Text = "Quản lý rạp";
+            this.quảnLýRạpToolStripMenuItem.Click += new System.EventHandler(this.quảnLýRạpToolStripMenuItem_Click);
+            // 
             // bt_tim
             // 
             this.bt_tim.BackColor = System.Drawing.SystemColors.HotTrack;
@@ -182,7 +196,7 @@ namespace Projec_QLDA
             // 
             this.grw_kh.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grw_kh.Location = new System.Drawing.Point(9, 145);
-            this.grw_kh.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grw_kh.Margin = new System.Windows.Forms.Padding(2);
             this.grw_kh.Name = "grw_kh";
             this.grw_kh.RowHeadersWidth = 51;
             this.grw_kh.RowTemplate.Height = 24;
@@ -199,6 +213,7 @@ namespace Projec_QLDA
             this.textBox1.Size = new System.Drawing.Size(358, 27);
             this.textBox1.TabIndex = 134;
             this.textBox1.Text = "Tìm kiếm theo mã phim";
+            this.textBox1.Click += new System.EventHandler(this.textBox1_Click_1);
             // 
             // bt_luu
             // 
@@ -254,20 +269,6 @@ namespace Projec_QLDA
             this.label2.Size = new System.Drawing.Size(262, 30);
             this.label2.TabIndex = 130;
             this.label2.Text = "KẾ HOẠCH CHIẾU PHIM";
-            // 
-            // quảnLýThểLoạiToolStripMenuItem
-            // 
-            this.quảnLýThểLoạiToolStripMenuItem.Name = "quảnLýThểLoạiToolStripMenuItem";
-            this.quảnLýThểLoạiToolStripMenuItem.Size = new System.Drawing.Size(268, 24);
-            this.quảnLýThểLoạiToolStripMenuItem.Text = "Quản lý thể loại";
-            this.quảnLýThểLoạiToolStripMenuItem.Click += new System.EventHandler(this.quảnLýThểLoạiToolStripMenuItem_Click);
-            // 
-            // quảnLýRạpToolStripMenuItem
-            // 
-            this.quảnLýRạpToolStripMenuItem.Name = "quảnLýRạpToolStripMenuItem";
-            this.quảnLýRạpToolStripMenuItem.Size = new System.Drawing.Size(268, 24);
-            this.quảnLýRạpToolStripMenuItem.Text = "Quản lý rạp";
-            this.quảnLýRạpToolStripMenuItem.Click += new System.EventHandler(this.quảnLýRạpToolStripMenuItem_Click);
             // 
             // Form1
             // 
