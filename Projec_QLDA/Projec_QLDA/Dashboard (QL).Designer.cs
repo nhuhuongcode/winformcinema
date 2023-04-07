@@ -59,7 +59,6 @@ namespace Projec_QLDA
             this.cb_suatchieu = new System.Windows.Forms.ComboBox();
             this.cb_mar = new System.Windows.Forms.ComboBox();
             this.dT_ngaychieu = new System.Windows.Forms.DateTimePicker();
-            this.label8 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grw_lc)).BeginInit();
             this.SuspendLayout();
@@ -205,7 +204,7 @@ namespace Projec_QLDA
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(164, 31);
             this.textBox1.TabIndex = 134;
-            this.textBox1.Text = "Tìm kiếm theo mã cụm rạp";
+            this.textBox1.Text = "Tìm kiếm theo mã lịch chiếu";
             this.textBox1.Click += new System.EventHandler(this.textBox1_Click);
             // 
             // bt_luu
@@ -349,22 +348,12 @@ namespace Projec_QLDA
             this.dT_ngaychieu.Size = new System.Drawing.Size(250, 22);
             this.dT_ngaychieu.TabIndex = 148;
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(570, 250);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(44, 16);
-            this.label8.TabIndex = 149;
-            this.label8.Text = "label8";
-            // 
             // Dashboard__QL_
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1016, 562);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.dT_ngaychieu);
             this.Controls.Add(this.cb_mar);
             this.Controls.Add(this.cb_suatchieu);
@@ -428,7 +417,6 @@ namespace Projec_QLDA
         private System.Windows.Forms.ComboBox cb_suatchieu;
         private System.Windows.Forms.ComboBox cb_mar;
         private System.Windows.Forms.DateTimePicker dT_ngaychieu;
-        private System.Windows.Forms.Label label8;
     }
 }
 

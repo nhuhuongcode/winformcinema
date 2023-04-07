@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Windows.Forms.VisualStyles;
+using System.Reflection;
 
 namespace Projec_QLDA
 {
@@ -46,14 +47,15 @@ namespace Projec_QLDA
         {
 
         }
+		public string cmdmaintext = "select LichChieu.MaLichChieu, ChiTietLichChieu.MaPhim, Phim.TenPhim, LichChieu.MaRap, LichChieu.NgayChieu, ChiTietLichChieu.MaSuat from(LichChieu left JOIN ChiTietLichChieu ON LichChieu.MalichChieu = ChiTietLichChieu.MaLichChieu) " +
+					"inner join Phim on ChiTietLichChieu.MaPhim = Phim.MaPhim";
         public void laydulieu()
 		{
 			try
 			{
 				SqlConnection cn = new SqlConnection("Data Source=DESKTOP-6B95ADJ\\HUONG;Initial Catalog=RAP5;User ID=sa;Password=nguyennhuhuong");
 				cn.Open();
-				SqlCommand cmd = new SqlCommand("select LichChieu.MaLichChieu, LichChieu.MaPhim, Phim.TenPhim, LichChieu.MaRap, LichChieu.NgayChieu, ChiTietLichChieu.MaSuat from (LichChieu INNER JOIN Phim ON LichChieu.MaPhim = Phim.MaPhim) " +
-					"inner join ChiTietLichChieu on ChiTietLichChieu.MaLichChieu = LichChieu.MaLichChieu", cn);
+				SqlCommand cmd = new SqlCommand(cmdmaintext, cn);
 				sda.SelectCommand = cmd;
 				sda.Fill(ds, "LichChieuChiTiet");
 
@@ -121,29 +123,36 @@ namespace Projec_QLDA
 
 		}
 
-
-		private void bt_chinhsua_Click(object sender, EventArgs e)
+        public bool sua;
+        private void bt_chinhsua_Click(object sender, EventArgs e)
 		{
 			enable(true);
+			sua = true;
+			if (tb_malc.Text != "")
+			{
+                SqlCommand fcmd = new SqlCommand(
+				"select LichChieu.MaLichChieu, ChiTietLichChieu.MaPhim, Phim.TenPhim, LichChieu.MaRap, LichChieu.NgayChieu, ChiTietLichChieu.MaSuat " +
+				"from LichChieu " +
+				"inner join ChiTietLichChieu on LichChieu.MalichChieu = ChiTietLichChieu.MaLichChieu " +
+				"inner join Phim on ChiTietLichChieu.MaPhim = Phim.MaPhim " +
+				"where LichChieu.MalichChieu = @malichchieu", cn);
+                cn.Open();
+                SqlParameter fmalichchieu = new SqlParameter(
+                    "@malichchieu", SqlDbType.VarChar, 10);
+                fmalichchieu.Value = tb_malc.Text.Trim();
+                fcmd.Parameters.Add(fmalichchieu);
+                sda.SelectCommand = fcmd;
+                DataTable tb = new DataTable();
+                sda.Fill(tb);
+                DataRow row = tb.Rows[0];
+                cb_p.Text = row[2].ToString();
+                cb_suatchieu.Text = row[5].ToString();
+				cb_mar.Text = row[3].ToString();
+                dT_ngaychieu.Value = DateTime.Parse(row[4].ToString());
+                cn.Close();
+            }
 
-			// thiet lap chinh sua
-			SqlCommand ucmd = new SqlCommand("" +
-				"update LichChieu set MaPhim = @maphim, MaRap = @marap, NgayChieu = @ngaychieu where MaLichChieu = @malichchieu"
-				, cn);
-			SqlParameter umaphim = new SqlParameter(
-				"@maphim", SqlDbType.NVarChar, 10, "MaPhim");
-			SqlParameter umarap = new SqlParameter(
-				"@marap", SqlDbType.NVarChar, 5, "MaRap");
-			SqlParameter umalichchieu = new SqlParameter(
-				"@malichchieu", SqlDbType.VarChar, 10, "MaLichChieu");
-			SqlParameter ungaychieu = new SqlParameter(
-				"@ngaychieu", SqlDbType.Date, 10, "NgayChieu");
-			ucmd.Parameters.Add(umaphim);
-			ucmd.Parameters.Add(umarap);
-			ucmd.Parameters.Add(umalichchieu);
-			ucmd.Parameters.Add(ungaychieu);
-			sda.UpdateCommand = ucmd;
-		}
+        }
 
 		public bool them = false;
 		private void bt_them_Click(object sender, EventArgs e)
@@ -153,42 +162,59 @@ namespace Projec_QLDA
 			tb_malc.Focus();
 
 		}
-
+		
 		private void bt_xoa_Click(object sender, EventArgs e)
 		{
 			enable(true);
 			grw_lc.ReadOnly = true;
-			grw_lc.AllowUserToDeleteRows = true;
-			SqlCommand dcmd = new SqlCommand(
-				"delete from LichChieu where malichchieu = @malichchieu", cn);
-			SqlParameter dmalichchieu = new SqlParameter(
-				"@malichchieu", SqlDbType.VarChar, 10, "MaLichChieu");
-			dmalichchieu.SourceVersion = DataRowVersion.Original;
-			dcmd.Parameters.Add(dmalichchieu);
-			sda.DeleteCommand = dcmd;
-		}
+			grw_lc.AllowUserToDeleteRows = false;
+            DialogResult result = MessageBox.Show("Bạn có chắc muốn xóa thông tin này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+			try
+			{
+				if (result == DialogResult.Yes)
+				{
+					SqlCommand cmd = new SqlCommand("Delete from chitietlichchieu where malichchieu ='" + tb_malc.Text + "'", cn);
+					cn.Open();
+					cmd.ExecuteNonQuery();
+					cn.Close();
+					MessageBox.Show("Đã xóa thông tin !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					SqlCommand cmd2 = new SqlCommand(cmdmaintext, cn);
+					ds.Tables["LichChieuChiTiet"].Clear();
+					cn.Open();
+					sda.SelectCommand= cmd2;
+					sda.Fill(ds, "LichChieuChiTiet");
+					grw_lc.DataSource = ds;
+					grw_lc.DataMember = "LichChieuChiTiet";
+					cn.Close();
+				}
+				enable(false);
+			}
+			catch(Exception ex) { MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+        }
 
-		private void bt_tim_Click(object sender, EventArgs e)
+        private void bt_tim_Click(object sender, EventArgs e)
 		{
 			cn.Open();
 			SqlCommand fcmd = new SqlCommand(
-				"select * from LichChieu where malichchieu = @malichchieu", cn);
+                "select LichChieu.MaLichChieu, ChiTietLichChieu.MaPhim, Phim.TenPhim, LichChieu.MaRap, LichChieu.NgayChieu, ChiTietLichChieu.MaSuat " +
+				"from (LichChieu INNER JOIN ChiTietLichChieu ON LichChieu.MalichChieu = ChiTietLichChieu.MaLichChieu) " +
+				"inner join Phim on ChiTietLichChieu.MaPhim = Phim.MaPhim AND LichChieu.Malichchieu = @malichchieu where LichChieu.MalichChieu = @malichchieu"
+				, cn);
 			SqlParameter fmalichchieu = new SqlParameter(
 				"@malichchieu", SqlDbType.VarChar, 10);
 			fmalichchieu.Value = textBox1.Text.Trim();
 			fcmd.Parameters.Add(fmalichchieu);
 			sda.SelectCommand = fcmd;
-			ds.Tables["LichChieu"].Clear();
-			sda.Fill(ds, "LichChieu");
+			sda.Fill(ds, "LichChieuChiTiettim");
 			cn.Close();
 			grw_lc.DataSource = ds;
-			grw_lc.DataMember = "LichChieu";
+			grw_lc.DataMember = "LichChieuChiTiettim";
 			if (string.IsNullOrEmpty(textBox1.Text))
 			{
 				// Truy vấn tất cả các sản phẩm trong table và hiển thị chúng trong DataGridView.
 				laydulieu();
 				grw_lc.DataSource = ds;
-				grw_lc.DataMember = "LichChieu";
+				grw_lc.DataMember = "LichChieuChiTiet";
 			}
 
 		}
@@ -207,38 +233,69 @@ namespace Projec_QLDA
 			enable(true);
 				if (tb_malc.Text != "")
 				{
-					if (them == true)
+				if (them == true)
+				{
+					SqlCommand command = new SqlCommand();
+					command = cn.CreateCommand();
+					try
 					{
-                        SqlCommand command = new SqlCommand();
-                        command = cn.CreateCommand();
-                        try
-                        {
-                            cn.Open();
-                            command.CommandText = "insert into LichChieu values ('" + tb_malc.Text.Trim() + "','" + cb_p.SelectedValue + "','" + cb_mar.SelectedValue + "','" + dT_ngaychieu.Value + "')";
-                            command.ExecuteNonQuery();
-                            command.CommandText = "insert into ChiTietLichChieu values ('" + tb_malc.Text.Trim() + "','" + cb_suatchieu.SelectedValue + "')";
-                            command.ExecuteNonQuery();
-                            MessageBox.Show("Cập nhật thành công");
-                            sda.Fill(ds, "LichChieuChiTiet");
-                            them = false;
-                            enable(false);
-							cn.Close();
-                        }
-                    catch (SqlException ex)
-                    {
-                        if (ex.Number == 2627)
-                        {
-                            MessageBox.Show("Mã cụm rạp đã tồn tại", "Error");
-                        }
+						cn.Open();
+						command.CommandText = "insert into LichChieu values ('" + tb_malc.Text.Trim() + "','"+ cb_mar.SelectedValue + "','" + dT_ngaychieu.Value + "')";
+						command.ExecuteNonQuery();
+						command.CommandText = "insert into ChiTietLichChieu values ('" + tb_malc.Text.Trim() + "','" + cb_suatchieu.SelectedValue + "','"+ cb_p.SelectedValue +"')";
+						command.ExecuteNonQuery();
+						MessageBox.Show("Cập nhật thành công");
+						sda.Fill(ds, "LichChieuChiTiet");
+						them = false;
+						enable(false);
+						cn.Close();
+					}
+					catch (SqlException ex)
+					{
+						if (ex.Number == 2627)
+						{
+							MessageBox.Show("Thông tin bị trùng lặp!", "Error");
+						}
 						else
 						{
 							MessageBox.Show(ex.Message);
 						}
 						cn.Close();
-
+					}
+				}else if(sua == true)
+				{
+                    SqlCommand command = new SqlCommand();
+                    command = cn.CreateCommand();
+                    try
+                    {
+                        cn.Open();
+                        command.CommandText = "update Chitietlichchieu set masuat= '" + cb_suatchieu.SelectedValue + "', maphim ='" + cb_p.SelectedValue+"' where malichchieu ='"+ tb_malc.Text.Trim() + "'";
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Cập nhật thành công");
+						SqlCommand cmd = new SqlCommand(cmdmaintext,cn);
+						ds.Tables["LichChieuChiTiet"].Clear();
+						sda.SelectCommand= cmd;
+						sda.Fill(ds, "LichChieuChiTiet");
+						grw_lc.DataSource= ds;
+						grw_lc.DataMember = "LichChieuChiTiet";
+                        sua = false;
+                        enable(false);
+                        cn.Close();
+                    }
+                    catch (SqlException ex)
+                    {
+                        if (ex.Number == 2627)
+                        {
+                            MessageBox.Show("Thông tin bị trùng lặp!", "Error");
+                        }
+                        else
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        cn.Close();
                     }
                 }
-				}
+			}
 				else
 				{
 					MessageBox.Show("Vui lòng nhập mã lịch chiếu","Lỗi", MessageBoxButtons.OK,MessageBoxIcon.Error);
