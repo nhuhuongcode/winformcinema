@@ -18,7 +18,7 @@ namespace WindowsFormsApp3
 {
 	public partial class QL_Phim : Form
 	{
-		SqlConnection cn = new SqlConnection(@"Data Source=DESKTOP-DDKM1BA\HAO;Initial Catalog=RAP5;Integrated Security=True");
+		SqlConnection cn = new SqlConnection(@"Data Source=DESKTOP-DDKM1BA\HAO;Initial Catalog=RAP23;Integrated Security=True");
 
 		public SqlDataAdapter sda = new SqlDataAdapter();
 		public DataSet ds = new DataSet();
@@ -46,15 +46,20 @@ namespace WindowsFormsApp3
 
 
 		}
-
+		public string cmdmaintext = "SELECT phim.MaPhim, Phim.TenPhim, TheLoai.TenTheLoai as TheLoaiChinh, TenTheLoaiPhu, Phim.ThoiLuong, Phim.CoLa3D, Phim.CoLongTieng FROM Phim left join (SELECT PhimTheLoaiPhu.MaPhim, isnull(STRING_AGG(TheLoai.TenTheLoai, ', '), '') AS TenTheLoaiPhu FROM PhimTheLoaiPhu INNER JOIN TheLoai ON PhimTheLoaiPhu.MaTheLoai = TheLoai.MaTheLoai GROUP BY PhimTheLoaiPhu.MaPhim) as PhimPhim on phim.MaPhim = PhimPhim.MaPhim inner join TheLoai on TheLoai.MaTheLoai = Phim.MaTheLoaiChinh";
 		public void laydulieu()
 		{
 			try
 			{
-				SqlConnection cn = new SqlConnection(@"Data Source=DESKTOP-DDKM1BA\HAO;Initial Catalog=RAP5;Integrated Security=True");
+				SqlConnection cn = new SqlConnection(@"
+
+");
 				cn.Open();
-				SqlCommand cmd = new SqlCommand("SELECT phim.MaPhim, Phim.TenPhim, TheLoai.TenTheLoai as TheLoaiChinh, TenTheLoaiPhu, Phim.ThoiLuong, Phim.CoLa3D, Phim.CoLongTieng FROM Phim left join (SELECT PhimTheLoaiPhu.MaPhim, isnull(STRING_AGG(TheLoai.TenTheLoai, ', '), '') AS TenTheLoaiPhu FROM PhimTheLoaiPhu INNER JOIN TheLoai ON PhimTheLoaiPhu.MaTheLoai = TheLoai.MaTheLoai GROUP BY PhimTheLoaiPhu.MaPhim) as PhimPhim on phim.MaPhim = PhimPhim.MaPhim inner join TheLoai on TheLoai.MaTheLoai = Phim.MaTheLoaiChinh;", cn);
+				SqlCommand cmd = new SqlCommand(cmdmaintext, cn);
 				sda.SelectCommand = cmd;
+				sda.Fill(ds, "PhimPhim");
+				SqlCommand cmdphim = new SqlCommand("SELECT phim.MaPhim, Phim.TenPhim, TheLoai.TenTheLoai as TheLoaiChinh, TenTheLoaiPhu, Phim.ThoiLuong, Phim.CoLa3D, Phim.CoLongTieng FROM Phim left join (SELECT PhimTheLoaiPhu.MaPhim, isnull(STRING_AGG(TheLoai.TenTheLoai, ', '), '') AS TenTheLoaiPhu FROM PhimTheLoaiPhu INNER JOIN TheLoai ON PhimTheLoaiPhu.MaTheLoai = TheLoai.MaTheLoai GROUP BY PhimTheLoaiPhu.MaPhim) as PhimPhim on phim.MaPhim = PhimPhim.MaPhim inner join TheLoai on TheLoai.MaTheLoai = Phim.MaTheLoaiChinh;", cn);
+				sda.SelectCommand = cmdphim;
 				sda.Fill(ds, "Phim");
 
 				SqlCommand cmdtl = new SqlCommand("select matheloai, tentheloai, matheloai +': '+ tentheloai as TheLoaiChinh from TheLoai", cn);
@@ -165,44 +170,55 @@ namespace WindowsFormsApp3
 			enable(true);
 			grw_phim.ReadOnly = true;
 			grw_phim.AllowUserToDeleteRows = true;
-			SqlCommand dcmd = new SqlCommand(
-				"delete from Phim where maphim = @maphim", cn);
-			SqlParameter dmacum = new SqlParameter(
-				"@maphim", SqlDbType.VarChar, 5, "MaPhim");
-			dmacum.SourceVersion = DataRowVersion.Original;
-			dcmd.Parameters.Add(dmacum);
-			sda.DeleteCommand = dcmd;
+			DialogResult result = MessageBox.Show("Bạn có chắc muốn xóa thông tin này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+			try
+			{
+				if (result == DialogResult.Yes)
+				{
+					SqlCommand cmd = new SqlCommand("Delete from Phim where maphim ='" + tb_maphim.Text + "'", cn);
+					cn.Open();
+					cmd.ExecuteNonQuery();
+					cn.Close();
+					MessageBox.Show("Đã xóa thông tin !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					SqlCommand cmd2 = new SqlCommand(cmdmaintext, cn);
+					ds.Tables["PhimPhim"].Clear();
+					cn.Open();
+					sda.SelectCommand = cmd2;
+					sda.Fill(ds, "PhimPhim");
+					grw_phim.DataSource = ds;
+					grw_phim.DataMember = "PhimPhim";
+					cn.Close();
+				}
+				enable(false);
+			}
+			catch (Exception ex) { MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error); }
 		}
 
-
+		public bool sua;
 
 		private void bt_sua_Click(object sender, EventArgs e)
 		{
 			enable(true);
-
-			// thiet lap chinh sua
-			SqlCommand ucmd = new SqlCommand("" +
-				"update Phim set TenPhim = @tenphim, TenTheLoai = @tentheloai, CoLa3D = @cola3d, CoLongTieng = @colongtieng, ThoiLuong = @thoiluong where MaPhim = @maphim"
-				, cn);
-			SqlParameter utenphim = new SqlParameter(
-				"@tenphim", SqlDbType.NVarChar, 50, "TenPhim");
-			SqlParameter udiachi = new SqlParameter(
-				"@tentheloai", SqlDbType.NVarChar, 50, "TenTheLoai");
-			SqlParameter umaphim = new SqlParameter(
-				"@maphim", SqlDbType.VarChar, 5, "MaPhim");
-			SqlParameter ucola3d = new SqlParameter(
-				"@cola3d", SqlDbType.Bit, 0, "CoLa3D");
-			SqlParameter ucolongtieng = new SqlParameter(
-				"@colongtieng", SqlDbType.Bit, 0, "CoLongTieng");
-			SqlParameter uthoiluong = new SqlParameter(
-				"@thoiluong", SqlDbType.Int, 200, "ThoiLuong");
-			ucmd.Parameters.Add(utenphim);
-			ucmd.Parameters.Add(umaphim);
-			ucmd.Parameters.Add(udiachi);
-			ucmd.Parameters.Add(ucola3d);
-			ucmd.Parameters.Add(ucolongtieng);
-			ucmd.Parameters.Add(uthoiluong);
-			sda.UpdateCommand = ucmd;
+			sua = true;
+			if (tb_maphim.Text != "")
+			{
+				SqlCommand fcmd = new SqlCommand(
+				"SELECT phim.MaPhim, Phim.TenPhim, TheLoai.TenTheLoai as TheLoaiChinh, TenTheLoaiPhu, Phim.ThoiLuong, Phim.CoLa3D, Phim.CoLongTieng FROM Phim left join (SELECT PhimTheLoaiPhu.MaPhim, isnull(STRING_AGG(TheLoai.TenTheLoai, ', '), '') AS TenTheLoaiPhu FROM PhimTheLoaiPhu INNER JOIN TheLoai ON PhimTheLoaiPhu.MaTheLoai = TheLoai.MaTheLoai GROUP BY PhimTheLoaiPhu.MaPhim) as PhimPhim on phim.MaPhim = PhimPhim.MaPhim inner join TheLoai on TheLoai.MaTheLoai = Phim.MaTheLoaiChinh where Phim.MaPhim = @maphim", cn);
+				cn.Open();
+				SqlParameter fmaphim = new SqlParameter(
+					"@maphim", SqlDbType.VarChar, 10);
+				fmaphim.Value = tb_maphim.Text.Trim();
+				fcmd.Parameters.Add(fmaphim);
+				sda.SelectCommand = fcmd;
+				DataTable tb = new DataTable();
+				sda.Fill(tb);
+				DataRow row = tb.Rows[0];
+				tb_tenphim.Text = row[1].ToString();
+				cb_tlc.Text = row[2].ToString();
+				tb_thoiluong.Text = row[4].ToString();
+				cb_tlp.Text = row[3].ToString();
+				cn.Close();
+			}
 		}
 
 		private void textBox1_Click(object sender, EventArgs e)
@@ -258,6 +274,52 @@ namespace WindowsFormsApp3
 
 					}
 				}
+				else if (sua == true)
+				{
+					//SqlCommand command = new SqlCommand("update Phim set maphim = '" + tb_maphim.Text.Trim() + "'") ;
+					SqlCommand command = new SqlCommand();
+					command = cn.CreateCommand();
+					try
+					{
+						int bad = ktrcheckbox(checkBox1);
+						int longtieng = ktrcheckbox(checkBox2);
+						cn.Open();
+						command.CommandText = "update Phim set tenphim=N'" + tb_tenphim.Text + "', matheloaichinh = '" + cb_tlc.SelectedValue + "', thoiluong =" + tb_thoiluong.Text.Trim() + ", cola3d=" + bad + ", colongtieng= " + longtieng + " where maphim ='" + tb_maphim.Text.Trim() + "'";
+						command.ExecuteNonQuery();
+
+						command.CommandText = "delete from PhimTheLoaiPhu where maphim = '" + tb_maphim + "'";
+						foreach (var item in lb_tlp.Items)
+						{
+							command.CommandText = "select matheloai from theloai where tentheloai = N'" + item.ToString() + "'";
+							string matheloai = (string)command.ExecuteScalar();
+							command.CommandText = "insert into PhimTheLoaiPhu values ('" + tb_maphim.Text.Trim() + "','" + matheloai + "')";
+							command.ExecuteNonQuery();
+						}
+
+						MessageBox.Show("Cập nhật thành công");
+						SqlCommand cmd = new SqlCommand(cmdmaintext, cn);
+						ds.Tables["PhimPhim"].Clear();
+						sda.SelectCommand = cmd;
+						sda.Fill(ds, "PhimPhim");
+						grw_phim.DataSource = ds;
+						grw_phim.DataMember = "PhimPhim";
+						sua = false;
+						enable(false);
+						cn.Close();
+					}
+					catch (SqlException ex)
+					{
+						if (ex.Number == 2627)
+						{
+							MessageBox.Show("Thông tin bị trùng lặp!", "Error");
+						}
+						else
+						{
+							MessageBox.Show(ex.Message);
+						}
+						cn.Close();
+					}
+				}
 			}
 			else
 			{
@@ -274,6 +336,9 @@ namespace WindowsFormsApp3
 			tb_maphim.Text = grw_phim.CurrentRow.Cells[0].Value.ToString();
 			cb_tlc.Text = grw_phim.CurrentRow.Cells[2].Value.ToString();
 			tb_tenphim.Text = grw_phim.CurrentRow.Cells[1].Value.ToString();
+			tb_thoiluong.Text = grw_phim.CurrentRow.Cells[4].Value.ToString();
+			//lb_tlp.Text = grw_phim.CurrentRow.Cells[3].Value.ToString(); 
+			cb_tlp.Text = grw_phim.CurrentRow.Cells[3].Value.ToString();
 
 		}
 
