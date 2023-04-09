@@ -150,7 +150,7 @@ namespace WindowsFormsApp3
 			fcmd.Parameters.Add(fmacum);
 			sda.SelectCommand = fcmd;
 			ds.Tables["PhimPhim"].Clear();
-			sda.Fill(ds, "Phim");
+			sda.Fill(ds, "PhimPhim");
 			cn.Close();
 			grw_phim.DataSource = ds;
 			grw_phim.DataMember = "PhimPhim";
@@ -173,6 +173,10 @@ namespace WindowsFormsApp3
 			{
 				if (result == DialogResult.Yes)
 				{
+					SqlCommand cmd3 = new SqlCommand("Delete from PhimTheLoaiPhu where maphim ='" + tb_maphim.Text + "'", cn);
+					cn.Open();
+					cmd3.ExecuteNonQuery();
+					cn.Close();
 					SqlCommand cmd = new SqlCommand("Delete from Phim where maphim ='" + tb_maphim.Text + "'", cn);
 					cn.Open();
 					cmd.ExecuteNonQuery();
@@ -190,6 +194,7 @@ namespace WindowsFormsApp3
 				enable(false);
 			}
 			catch (Exception ex) { MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+
 		}
 
 		public bool sua;
@@ -233,93 +238,101 @@ namespace WindowsFormsApp3
 			enable(true);
 			if (tb_maphim.Text != "")
 			{
-				if (them == true)
+				SqlCommand cmdmatl = new SqlCommand("select tentheloai from theloai where matheloai ='" + cb_tlc.SelectedValue + "'", cn);
+				cn.Open();
+				string tentheloaichinh = (string)cmdmatl.ExecuteScalar();
+				cn.Close();
+
+
+				if (lb_tlp.Items.Contains(tentheloaichinh) == false)
 				{
-					SqlCommand command = new SqlCommand();
-					command = cn.CreateCommand();
-					try
+					if (them == true)
 					{
-						int bad = ktrcheckbox(checkBox1);
-						int longtieng = ktrcheckbox(checkBox2);
-						cn.Open();
-						command.CommandText = "insert into Phim values ('" + tb_maphim.Text.Trim() + "',N'" + tb_tenphim.Text.Trim() + "','" + cb_tlc.SelectedValue + "'," + tb_thoiluong.Text.Trim() + "," + bad + "," + longtieng + ")";
-						command.ExecuteNonQuery();
-						//command.CommandText = "insert into PhimTheLoaiPhu values ('" + lb_tlp.SelectedValue +  "')";
-						foreach (var item in lb_tlp.Items)
+						SqlCommand command = new SqlCommand();
+						command = cn.CreateCommand();
+						try
 						{
-							command.CommandText = "select matheloai from theloai where tentheloai = N'" + item.ToString() + "'";
-							string matheloai = (string)command.ExecuteScalar();
-							command.CommandText = "insert into PhimTheLoaiPhu values ('" + tb_maphim.Text.Trim() + "','" + matheloai + "')";
+							int bad = ktrcheckbox(checkBox1);
+							int longtieng = ktrcheckbox(checkBox2);
+							cn.Open();
+							command.CommandText = "insert into Phim values ('" + tb_maphim.Text.Trim() + "',N'" + tb_tenphim.Text.Trim() + "','" + cb_tlc.SelectedValue + "'," + tb_thoiluong.Text.Trim() + "," + bad + "," + longtieng + ")";
 							command.ExecuteNonQuery();
+							//command.CommandText = "insert into PhimTheLoaiPhu values ('" + lb_tlp.SelectedValue +  "')";
+							foreach (var item in lb_tlp.Items)
+							{
+								command.CommandText = "select matheloai from theloai where tentheloai = N'" + item.ToString() + "'";
+								string matheloai = (string)command.ExecuteScalar();
+								command.CommandText = "insert into PhimTheLoaiPhu values ('" + tb_maphim.Text.Trim() + "','" + matheloai + "')";
+								command.ExecuteNonQuery();
+							}
+							MessageBox.Show("Cập nhật thành công");
+							sda.Fill(ds, "PhimPhim");
+							them = false;
+							enable(false);
 							cn.Close();
 						}
-						MessageBox.Show("Cập nhật thành công");
-						SqlCommand cmd = new SqlCommand(cmdmaintext, cn);
-						sda.SelectCommand = cmd;
-						sda.Fill(ds, "PhimPhim");
-						them = false;
-						enable(false);
-						cn.Close();
-					}
-					catch (SqlException ex)
-					{
-						if (ex.Number == 2627)
+						catch (SqlException ex)
 						{
-							MessageBox.Show("Mã phim đã tồn tại", "Error");
-						}
-						else
-						{
-							MessageBox.Show(ex.Message);
-						}
-						cn.Close();
+							if (ex.Number == 2627)
+							{
+								MessageBox.Show("Mã phim đã tồn tại", "Error");
+							}
+							else
+							{
+								MessageBox.Show(ex.Message);
+							}
+							cn.Close();
 
+						}
 					}
-				}
-				else if (sua == true)
-				{
-					SqlCommand command = new SqlCommand();
-					command = cn.CreateCommand();
-					try
+					else if (sua == true)
 					{
-						int bad = ktrcheckbox(checkBox1);
-						int longtieng = ktrcheckbox(checkBox2);
-						cn.Open();
-						command.CommandText = "update Phim set tenphim=N'" + tb_tenphim.Text + "', matheloaichinh = '" + cb_tlc.SelectedValue + "', thoiluong =" + tb_thoiluong.Text.Trim() + ", cola3d=" + bad + ", colongtieng= " + longtieng + " where maphim ='" + tb_maphim.Text.Trim() + "'";
-						command.ExecuteNonQuery();
-
-						command.CommandText = "delete from PhimTheLoaiPhu where maphim = '" + tb_maphim + "'";
-						foreach (var item in lb_tlp.Items)
+						//SqlCommand command = new SqlCommand("update Phim set maphim = '" + tb_maphim.Text.Trim() + "'") ;
+						SqlCommand command = new SqlCommand();
+						command = cn.CreateCommand();
+						try
 						{
-							command.CommandText = "select matheloai from theloai where tentheloai = N'" + item.ToString() + "'";
-							string matheloai = (string)command.ExecuteScalar();
-							command.CommandText = "insert into PhimTheLoaiPhu values ('" + tb_maphim.Text.Trim() + "','" + matheloai + "')";
+							int bad = ktrcheckbox(checkBox1);
+							int longtieng = ktrcheckbox(checkBox2);
+							cn.Open();
+							command.CommandText = "update Phim set tenphim=N'" + tb_tenphim.Text + "', matheloaichinh = '" + cb_tlc.SelectedValue + "', thoiluong =" + tb_thoiluong.Text.Trim() + ", cola3d=" + bad + ", colongtieng= " + longtieng + " where maphim ='" + tb_maphim.Text.Trim() + "'";
 							command.ExecuteNonQuery();
-						}
 
-						MessageBox.Show("Cập nhật thành công");
-						SqlCommand cmd = new SqlCommand(cmdmaintext, cn);
-						ds.Tables["PhimPhim"].Clear();
-						sda.SelectCommand = cmd;
-						sda.Fill(ds, "PhimPhim");
-						grw_phim.DataSource = ds;
-						grw_phim.DataMember = "PhimPhim";
-						sua = false;
-						enable(false);
-						cn.Close();
-					}
-					catch (SqlException ex)
-					{
-						if (ex.Number == 2627)
-						{
-							MessageBox.Show("Thông tin bị trùng lặp!", "Error");
+							command.CommandText = "delete from PhimTheLoaiPhu where maphim = '" + tb_maphim + "'";
+							foreach (var item in lb_tlp.Items)
+							{
+								command.CommandText = "select matheloai from theloai where tentheloai = N'" + item.ToString() + "'";
+								string matheloai = (string)command.ExecuteScalar();
+								command.CommandText = "insert into PhimTheLoaiPhu values ('" + tb_maphim.Text.Trim() + "','" + matheloai + "')";
+								command.ExecuteNonQuery();
+							}
+
+							MessageBox.Show("Cập nhật thành công");
+							SqlCommand cmd = new SqlCommand(cmdmaintext, cn);
+							ds.Tables["PhimPhim"].Clear();
+							sda.SelectCommand = cmd;
+							sda.Fill(ds, "PhimPhim");
+							grw_phim.DataSource = ds;
+							grw_phim.DataMember = "PhimPhim";
+							sua = false;
+							enable(false);
+							cn.Close();
 						}
-						else
+						catch (SqlException ex)
 						{
-							MessageBox.Show(ex.Message);
+							if (ex.Number == 2627)
+							{
+								MessageBox.Show("Thông tin bị trùng lặp!", "Error");
+							}
+							else
+							{
+								MessageBox.Show(ex.Message);
+							}
+							cn.Close();
 						}
-						cn.Close();
 					}
 				}
+				else { MessageBox.Show("Lỗi thể loại phụ trùng với thể loại chính"); }
 			}
 			else
 			{
@@ -327,6 +340,8 @@ namespace WindowsFormsApp3
 				bt_them_Click_1(sender, e);
 				tb_maphim.Focus();
 			}
+
+
 
 
 		}
