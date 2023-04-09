@@ -47,8 +47,7 @@ namespace Projec_QLDA
         {
 
         }
-		public string cmdmaintext = "select LichChieu.MaLichChieu, ChiTietLichChieu.MaPhim, Phim.TenPhim, LichChieu.MaRap, LichChieu.NgayChieu, ChiTietLichChieu.MaSuat from(LichChieu left JOIN ChiTietLichChieu ON LichChieu.MalichChieu = ChiTietLichChieu.MaLichChieu) " +
-					"inner join Phim on ChiTietLichChieu.MaPhim = Phim.MaPhim";
+		public string cmdmaintext = "select LichChieu.MaLichChieu, LichChieu.MaPhim, Phim.TenPhim, LichChieu.MaRap, LichChieu.NgayChieu, LichChieu.MaSuat from LichChieu inner join Phim on LichChieu.MaPhim = Phim.MaPhim";
         public void laydulieu()
 		{
 			try
@@ -58,21 +57,18 @@ namespace Projec_QLDA
 				SqlCommand cmd = new SqlCommand(cmdmaintext, cn);
 				sda.SelectCommand = cmd;
 				sda.Fill(ds, "LichChieuChiTiet");
-
-				SqlCommand cmdlc = new SqlCommand("select * from LichChieu", cn);
-				SqlCommand cmdctlc = new SqlCommand("select * from ChiTietLichChieu", cn);
+				SqlCommand cmdlc = new SqlCommand("Select * from LichChieu", cn);
 				SqlCommand cmdp = new SqlCommand("select maphim, tenphim, maphim +': '+ tenphim as thehienphim from Phim", cn);
 				SqlCommand cmdsc = new SqlCommand("Select *, MaSuat +': '+ Convert(varchar(2), GioBatDau)+ 'gio'+convert(varchar(2),PhutBatDau) as thehienthoigian from suatchieu", cn);
 				SqlCommand cmdr = new SqlCommand("Select *, MaRap +': '+ TenCum as thehienrap from rap inner join cumrap on cumrap.macum = rap.macum", cn);
 				SqlDataAdapter sdap = new SqlDataAdapter();
 				SqlDataAdapter sdasc = new SqlDataAdapter();
 				SqlDataAdapter sdar = new SqlDataAdapter();
+                SqlDataAdapter sdaplc = new SqlDataAdapter();
 
-				sdalc.SelectCommand = cmdlc;
-                sdalc.Fill(ds, "LichChieu");
-                sdactlc.SelectCommand = cmdctlc;
-				sdactlc.Fill(ds, "ChiTietLichChieu");
-				sdap.SelectCommand = cmdp;
+                sdap.SelectCommand = cmdp;
+                sdap.Fill(ds, "LichChieu");
+                sdap.SelectCommand = cmdp;
 				sdap.Fill(ds, "Phim");
 				sdasc.SelectCommand = cmdsc;
 				sdasc.Fill(ds, "SuatChieu");
@@ -131,10 +127,8 @@ namespace Projec_QLDA
 			if (tb_malc.Text != "")
 			{
                 SqlCommand fcmd = new SqlCommand(
-				"select LichChieu.MaLichChieu, ChiTietLichChieu.MaPhim, Phim.TenPhim, LichChieu.MaRap, LichChieu.NgayChieu, ChiTietLichChieu.MaSuat " +
-				"from LichChieu " +
-				"inner join ChiTietLichChieu on LichChieu.MalichChieu = ChiTietLichChieu.MaLichChieu " +
-				"inner join Phim on ChiTietLichChieu.MaPhim = Phim.MaPhim " +
+                "select LichChieu.MaLichChieu, LichChieu.MaPhim, Phim.TenPhim, LichChieu.MaRap, LichChieu.NgayChieu, LichChieu.MaSuat " +
+				"from LichChieu inner join Phim on LichChieu.MaPhim = Phim.MaPhim " +
 				"where LichChieu.MalichChieu = @malichchieu", cn);
                 cn.Open();
                 SqlParameter fmalichchieu = new SqlParameter(
@@ -173,19 +167,19 @@ namespace Projec_QLDA
 			{
 				if (result == DialogResult.Yes)
 				{
-					SqlCommand cmd = new SqlCommand("Delete from chitietlichchieu where malichchieu ='" + tb_malc.Text + "'", cn);
+					SqlCommand cmd = new SqlCommand("Delete from LichChieu where malichchieu ='" + tb_malc.Text + "'", cn);
 					cn.Open();
 					cmd.ExecuteNonQuery();
 					cn.Close();
-					MessageBox.Show("Đã xóa thông tin !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-					SqlCommand cmd2 = new SqlCommand(cmdmaintext, cn);
-					ds.Tables["LichChieuChiTiet"].Clear();
-					cn.Open();
-					sda.SelectCommand= cmd2;
-					sda.Fill(ds, "LichChieuChiTiet");
-					grw_lc.DataSource = ds;
-					grw_lc.DataMember = "LichChieuChiTiet";
-					cn.Close();
+                    SqlCommand cmd2 = new SqlCommand(cmdmaintext, cn);
+                    ds.Tables["LichChieu"].Clear();
+                    cn.Open();
+                    sda.SelectCommand = cmd2;
+                    sda.Fill(ds, "LichChieu");
+                    cn.Close();
+                    grw_lc.DataSource = ds;
+                    grw_lc.DataMember = "LichChieu";
+                    MessageBox.Show("Đã xóa thông tin !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);	
 				}
 				enable(false);
 			}
@@ -196,25 +190,25 @@ namespace Projec_QLDA
 		{
 			cn.Open();
 			SqlCommand fcmd = new SqlCommand(
-                "select LichChieu.MaLichChieu, ChiTietLichChieu.MaPhim, Phim.TenPhim, LichChieu.MaRap, LichChieu.NgayChieu, ChiTietLichChieu.MaSuat " +
-				"from (LichChieu INNER JOIN ChiTietLichChieu ON LichChieu.MalichChieu = ChiTietLichChieu.MaLichChieu) " +
-				"inner join Phim on ChiTietLichChieu.MaPhim = Phim.MaPhim AND LichChieu.Malichchieu = @malichchieu where LichChieu.MalichChieu = @malichchieu"
-				, cn);
+                "select *, Phim.TenPhim " +
+				"from LichChieu " +
+				"inner join Phim on LichChieu.MaPhim = Phim.MaPhim where LichChieu.MalichChieu = @malichchieu", cn);
 			SqlParameter fmalichchieu = new SqlParameter(
 				"@malichchieu", SqlDbType.VarChar, 10);
 			fmalichchieu.Value = textBox1.Text.Trim();
 			fcmd.Parameters.Add(fmalichchieu);
+			ds.Tables["LichChieutim"].Clear();
 			sda.SelectCommand = fcmd;
-			sda.Fill(ds, "LichChieuChiTiettim");
+			sda.Fill(ds, "LichChieutim");
 			cn.Close();
 			grw_lc.DataSource = ds;
-			grw_lc.DataMember = "LichChieuChiTiettim";
+			grw_lc.DataMember = "LichChieutim";
 			if (string.IsNullOrEmpty(textBox1.Text))
 			{
 				// Truy vấn tất cả các sản phẩm trong table và hiển thị chúng trong DataGridView.
 				laydulieu();
 				grw_lc.DataSource = ds;
-				grw_lc.DataMember = "LichChieuChiTiet";
+				grw_lc.DataMember = "LichChieu";
 			}
 
 		}
@@ -240,9 +234,7 @@ namespace Projec_QLDA
 					try
 					{
 						cn.Open();
-						command.CommandText = "insert into LichChieu values ('" + tb_malc.Text.Trim() + "','"+ cb_mar.SelectedValue + "','" + dT_ngaychieu.Value + "')";
-						command.ExecuteNonQuery();
-						command.CommandText = "insert into ChiTietLichChieu values ('" + tb_malc.Text.Trim() + "','" + cb_suatchieu.SelectedValue + "','"+ cb_p.SelectedValue +"')";
+						command.CommandText = "insert into LichChieu values ('" + tb_malc.Text.Trim() + "','"+ cb_mar.SelectedValue + "','" + dT_ngaychieu.Value + "','"+ cb_p.SelectedValue + "','" + cb_suatchieu.SelectedValue + "')";
 						command.ExecuteNonQuery();
 						MessageBox.Show("Cập nhật thành công");
 						sda.Fill(ds, "LichChieuChiTiet");
@@ -269,7 +261,7 @@ namespace Projec_QLDA
                     try
                     {
                         cn.Open();
-                        command.CommandText = "update Chitietlichchieu set masuat= '" + cb_suatchieu.SelectedValue + "', maphim ='" + cb_p.SelectedValue+"' where malichchieu ='"+ tb_malc.Text.Trim() + "'";
+                        command.CommandText = "update lichchieu set masuat= '" + cb_suatchieu.SelectedValue + "', maphim ='" + cb_p.SelectedValue+"', ngaychieu= '"+dT_ngaychieu.Value+"', marap ='"+cb_mar.SelectedValue+"' where malichchieu ='"+ tb_malc.Text.Trim() + "'";
                         command.ExecuteNonQuery();
                         MessageBox.Show("Cập nhật thành công");
 						SqlCommand cmd = new SqlCommand(cmdmaintext,cn);

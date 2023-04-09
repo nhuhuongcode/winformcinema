@@ -18,7 +18,7 @@ namespace Projec_QLDA
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new QL_Phim());
+			Application.Run(new Dangnhap());
 
 		}
 	}
