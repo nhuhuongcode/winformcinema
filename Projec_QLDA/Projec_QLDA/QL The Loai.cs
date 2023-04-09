@@ -102,9 +102,26 @@ namespace WindowsFormsApp2
 
         private void bt_luu_Click(object sender, EventArgs e)
         {
-            sda.Update(ds, "TheLoai");
-            enable(false);
-            grw_tl.AllowUserToDeleteRows = true;
+            try
+            {
+                sda.Update(ds, "Rap");
+                enable(false);
+                grw_tl.AllowUserToDeleteRows = false;
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 547)
+                {
+                    MessageBox.Show("Không thể xóa thông tin thể loại này!", "Error");
+                }
+                else if (ex.Number == 2627)
+                {
+                    MessageBox.Show("Mã thể loại đã tồn tại", "Error");
+                }
+
+            }
+
+
         }
 
         private void bt_them_Click(object sender, EventArgs e)
