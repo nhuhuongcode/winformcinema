@@ -18,7 +18,7 @@ namespace WindowsFormsApp3
 {
 	public partial class QL_Phim : Form
 	{
-		SqlConnection cn = new SqlConnection(@"Data Source=DESKTOP-DDKM1BA\HAO;Initial Catalog=RAP23;Integrated Security=True");
+		SqlConnection cn = new SqlConnection(@"Data Source=DESKTOP-DDKM1BA\HAO;Initial Catalog=RAP23;Integrated Security=True"); 
 
 		public SqlDataAdapter sda = new SqlDataAdapter();
 		public DataSet ds = new DataSet();
@@ -27,23 +27,18 @@ namespace WindowsFormsApp3
 			InitializeComponent();
 		}
 
-
-
 		private void Form1_Load(object sender, EventArgs e)
 		{
 			grw_phim.AllowUserToDeleteRows = false;
 			grw_phim.ReadOnly = true;
 			laydulieu();
 			grw_phim.DataSource = ds;
-			grw_phim.DataMember = "Phim";
+			grw_phim.DataMember = "PhimPhim";
 			grw_phim.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 			grw_phim.Columns[1].Width = 230;
 			grw_phim.Columns[0].Width = 50;
 			grw_phim.Columns[2].Width = 80;
 			grw_phim.Columns[3].Width = 120;
-
-			//lb_tlp.Visible = false;
-
 
 		}
 		public string cmdmaintext = "SELECT phim.MaPhim, Phim.TenPhim, TheLoai.TenTheLoai as TheLoaiChinh, TenTheLoaiPhu, Phim.ThoiLuong, Phim.CoLa3D, Phim.CoLongTieng FROM Phim left join (SELECT PhimTheLoaiPhu.MaPhim, isnull(STRING_AGG(TheLoai.TenTheLoai, ', '), '') AS TenTheLoaiPhu FROM PhimTheLoaiPhu INNER JOIN TheLoai ON PhimTheLoaiPhu.MaTheLoai = TheLoai.MaTheLoai GROUP BY PhimTheLoaiPhu.MaPhim) as PhimPhim on phim.MaPhim = PhimPhim.MaPhim inner join TheLoai on TheLoai.MaTheLoai = Phim.MaTheLoaiChinh";
@@ -51,16 +46,13 @@ namespace WindowsFormsApp3
 		{
 			try
 			{
-				SqlConnection cn = new SqlConnection(@"
-
-");
 				cn.Open();
 				SqlCommand cmd = new SqlCommand(cmdmaintext, cn);
 				sda.SelectCommand = cmd;
 				sda.Fill(ds, "PhimPhim");
-				SqlCommand cmdphim = new SqlCommand("SELECT phim.MaPhim, Phim.TenPhim, TheLoai.TenTheLoai as TheLoaiChinh, TenTheLoaiPhu, Phim.ThoiLuong, Phim.CoLa3D, Phim.CoLongTieng FROM Phim left join (SELECT PhimTheLoaiPhu.MaPhim, isnull(STRING_AGG(TheLoai.TenTheLoai, ', '), '') AS TenTheLoaiPhu FROM PhimTheLoaiPhu INNER JOIN TheLoai ON PhimTheLoaiPhu.MaTheLoai = TheLoai.MaTheLoai GROUP BY PhimTheLoaiPhu.MaPhim) as PhimPhim on phim.MaPhim = PhimPhim.MaPhim inner join TheLoai on TheLoai.MaTheLoai = Phim.MaTheLoaiChinh;", cn);
-				sda.SelectCommand = cmdphim;
-				sda.Fill(ds, "Phim");
+				//SqlCommand cmdphim = new SqlCommand("SELECT phim.MaPhim, Phim.TenPhim, TheLoai.TenTheLoai as TheLoaiChinh, TenTheLoaiPhu, Phim.ThoiLuong, Phim.CoLa3D, Phim.CoLongTieng FROM Phim left join (SELECT PhimTheLoaiPhu.MaPhim, isnull(STRING_AGG(TheLoai.TenTheLoai, ', '), '') AS TenTheLoaiPhu FROM PhimTheLoaiPhu INNER JOIN TheLoai ON PhimTheLoaiPhu.MaTheLoai = TheLoai.MaTheLoai GROUP BY PhimTheLoaiPhu.MaPhim) as PhimPhim on phim.MaPhim = PhimPhim.MaPhim inner join TheLoai on TheLoai.MaTheLoai = Phim.MaTheLoaiChinh;", cn);
+				//sda.SelectCommand = cmdphim;
+				//sda.Fill(ds, "Phim");
 
 				SqlCommand cmdtl = new SqlCommand("select matheloai, tentheloai, matheloai +': '+ tentheloai as TheLoaiChinh from TheLoai", cn);
 				SqlDataAdapter sdaphim = new SqlDataAdapter();
@@ -76,12 +68,18 @@ namespace WindowsFormsApp3
 
 				SqlCommand command = new SqlCommand("SELECT Cola3D FROM Phim", cn);
 				SqlDataReader reader = command.ExecuteReader();
-
 				if (reader.Read())
 				{
 					checkBox1.Checked = (bool)reader["Cola3D"];
 				}
 
+				//SqlCommand command1 = new SqlCommand("SELECT CoLongTieng FROM Phim", cn);
+				//SqlDataReader reader1 = command.ExecuteReader();
+
+				//if (reader1.Read())
+				//{
+				//	checkBox2.Checked = (bool)reader1["CoLongTieng"];
+				//}
 
 				cn.Close();
 			}
@@ -151,17 +149,17 @@ namespace WindowsFormsApp3
 			fmacum.Value = tb_tim.Text.ToString().Trim();
 			fcmd.Parameters.Add(fmacum);
 			sda.SelectCommand = fcmd;
-			ds.Tables["Phim"].Clear();
+			ds.Tables["PhimPhim"].Clear();
 			sda.Fill(ds, "Phim");
 			cn.Close();
 			grw_phim.DataSource = ds;
-			grw_phim.DataMember = "Phim";
+			grw_phim.DataMember = "PhimPhim";
 			if (string.IsNullOrEmpty(tb_tim.Text))
 			{
 				// Truy vấn tất cả các sản phẩm trong table và hiển thị chúng trong DataGridView.
 				laydulieu();
 				grw_phim.DataSource = ds;
-				grw_phim.DataMember = "Phim";
+				grw_phim.DataMember = "PhimPhim";
 			}
 		}
 
@@ -253,9 +251,12 @@ namespace WindowsFormsApp3
 							string matheloai = (string)command.ExecuteScalar();
 							command.CommandText = "insert into PhimTheLoaiPhu values ('" + tb_maphim.Text.Trim() + "','" + matheloai + "')";
 							command.ExecuteNonQuery();
+							cn.Close();
 						}
 						MessageBox.Show("Cập nhật thành công");
-						sda.Fill(ds, "Phim");
+						SqlCommand cmd = new SqlCommand(cmdmaintext, cn);
+						sda.SelectCommand = cmd;
+						sda.Fill(ds, "PhimPhim");
 						them = false;
 						enable(false);
 						cn.Close();
@@ -276,7 +277,6 @@ namespace WindowsFormsApp3
 				}
 				else if (sua == true)
 				{
-					//SqlCommand command = new SqlCommand("update Phim set maphim = '" + tb_maphim.Text.Trim() + "'") ;
 					SqlCommand command = new SqlCommand();
 					command = cn.CreateCommand();
 					try
